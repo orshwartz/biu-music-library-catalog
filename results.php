@@ -386,7 +386,7 @@ if (isset($action)) {
 
     if ($num_rows > 0) {
         echo "<table border=1 bordercolor=black align=center class='dataTable'>";
-        echo "<tr><td>&nbsp;</td><td align=center dir=$lang_directions[$lang]><b>" . $lang_terms['media'][$lang] . "</b></td><td align=center dir=$lang_directions[$lang]><b>" . $lang_terms['composer'][$lang] . "</b></td><td align=center dir=$lang_directions[$lang]><b>" . $lang_terms['title'][$lang] . "</b></td><td align=center dir=$lang_directions[$lang]><b>" . $lang_terms['searchGoogle'][$lang] . "</b></td></tr>";
+        echo "<tr><td>&nbsp;</td><td align=center dir=$lang_directions[$lang]><b>" . $lang_terms['media'][$lang] . "</b></td><td align=center dir=$lang_directions[$lang]><b>" . $lang_terms['composer'][$lang] . "</b></td><td align=center dir=$lang_directions[$lang]><b>" . $lang_terms['title'][$lang] . "</b></td></tr>";
 
         for($i = $loop_startRow; ($i < ($loop_pageSize + $loop_startRow)) && ($i < $num_rows); $i++) {
 
@@ -412,7 +412,7 @@ if (isset($action)) {
             }
 
             echo "<tr>";
-            echo "<td align=left>&nbsp;<a href=\"record.php?id=" . $id . "&display=" . $display . "\">" . ($i + 1) . "</a>&nbsp;</td><td align=left>&nbsp;" . mediaNamebyID($media_id) . "&nbsp;</td><td align=left>&nbsp;" . $composer . "&nbsp;</td><td align=$align_title dir=$align_dir>&nbsp;<a href=\"record.php?id=" . $id . "&display=" . $display . "\">" . $composition_title . "</a>&nbsp;</td><td align=$align>&nbsp;<a href=\"http://www.google.co.il/search?hl=heb&enc=ISO-8859-8&ie=ISO-8859-8&q=" . urlencode($composer) . "+" . urlencode($composition_title) . "\" target=\"_blank\">" . $lang_terms['search'][$lang] . "</a>&nbsp;</td>";
+            echo "<td align=left>&nbsp;<a href=\"record.php?id=" . $id . "&display=" . $display . "\">" . ($i + 1) . "</a>&nbsp;</td><td align=left>&nbsp;" . mediaNamebyID($media_id) . "&nbsp;</td><td align=left>&nbsp;" . $composer . "&nbsp;</td><td align=$align_title dir=$align_dir>&nbsp;<a href=\"record.php?id=" . $id . "&display=" . $display . "\">" . $composition_title . "</a>&nbsp;</td>";
             echo "</tr>";
         }
         echo "</table>";
