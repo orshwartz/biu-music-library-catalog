@@ -1,0 +1,267 @@
+<!-- This file brings up the pop-up window when clicking on the
+	index button. the function openModal() calls this page, along
+	with a code that defines wbich category we need to display.
+	Builds the list of avialable values of requested type
+    (Soloist,Performance group, Orchestra, Conductor, Subject or Composer)
+ 	depends on parameter passed.
+	Used to simplify search process to the user, by giving to him/her
+	ll possible values for selected criteria.
+	Click on any item in this list closes the window with the list
+	and writes selected value to the appropriate field in the search form.
+ -->
+  <html>
+  <head>
+  	<title>אינדקס</title>
+  	<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1255">
+
+<!-- This file includes general functions and scripts -->
+
+<script>
+<!-- Replaces \r\n (newlines) with <br>s. -->
+function saveEOL (val)
+{
+	var newVal	= val ;
+	while ( newVal.search ("\r\n") != -1 )
+		newVal		= newVal.replace ("\r\n", "<br>") ;
+	return newVal ;
+}
+
+<!-- Replaces <br>s with \r\n (newlines). -->
+function restoreEOL (val)
+{
+	var newVal	= val ;
+	while ( newVal.search ("<br>") != -1 )
+		newVal		= newVal.replace ("<br>", "\r\n") ;
+	return newVal ;
+}
+
+<!-- Places mouse focus on the first text field in each page.-->
+function placeFocus(formInst)
+{
+	if (document.forms.length > 0)
+	{
+		var field = document.forms[formInst];
+                if (field != null)
+                {
+    		   for (i = 0; i < field.length; i++)
+    		   {
+    			if ((field.elements[i].type == "text") || (field.elements[i].type == "textarea") || (field.elements[i].type.toString().charAt(0) == "s"))
+    			{
+       		           document.forms[formInst].elements[i].focus();
+    			   break;
+                     	}
+	           }
+                }
+         }
+
+}
+</script>
+<style type="text/css">
+.bigTitle{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#3333FF;font-size:18px;text-decoration:none;}
+
+.enterTitle1{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#1A00C3;font-size:50pt;text-decoration:none;}
+.enterTitle2{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#1A00C3;font-size:40pt;text-decoration:none;}
+.enterTitle3{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#1A00C3;font-size:35pt;text-decoration:none;font-weight:bold;}
+.enterTitle4{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#1A00C3;font-size:30pt;text-decoration:none;}
+
+.menuTitle{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#3333FF;font-size:18px;text-decoration:underline;}
+.normalTitle{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#3333FF;font-size:14px;}
+.smallTitle{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#3333FF;font-size:12px;}
+.recordTitle{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';;font-size:16px;}
+
+body {
+  background-color: #9999FF;
+}
+
+.dataTable {
+	font: 10pt Tahoma;
+	color: #000000;
+	background: #FFFFFF;
+	border: 1px solid #949494;
+}
+
+.dataTable caption {
+	font: 13pt Tahoma;
+	letter-spacing: 0.2em;
+	padding: 0.5em;
+	background: transparent;
+}
+
+.dataTable thead th {
+	background: #D12C26;
+	color: #FFFFFF;
+	padding: 1em 0.7em 1em 0.7em;
+	font: 10pt "Tahoma";
+	font-weight: bold;
+}
+
+.dataTable tbody td, tbody th {
+	padding: 0.5em;
+}
+
+.dataTable tbody tr.odd {
+	background: #E9E9E9;
+}
+
+.dataTable tbody tr {
+	background: #EEEEEE;
+}
+
+.dataTable tfoot td, tfoot th {
+	background: #D12C26;
+	color: #FFFFFF;
+	padding: 0.5em 0.7em 0.5em 0.7em;
+	font: 10pt "Tahoma";
+	font-weight: bold;
+}
+
+.dataTable tbody a {
+	font-weight: bold;
+	text-decoration: underline;
+	color: #000000;
+}
+
+.dataTable tbody a:hover {
+	text-decoration: underline;
+}
+
+.dataTable tbody a:visited {
+	color: #474747;
+}
+
+</style>
+
+<!-- This file defines the connection to the database.
+	Must be included in all files which use the database. -->
+<!-- This file defines the navigation bar displayed on top of each of
+	 the search system pages !-->
+
+<table border=0 align=center>
+<tr>
+	<td height=10>
+	</td>
+</tr>
+<tr>
+	<!-- link to the help documentation -->
+	<td align=right>
+		<form action="help.pdf" method=GET>
+		<input alt="עזרה" type="image" src="images/help.gif">
+		</form>
+	</td>
+
+	<td align=right>
+		&nbsp; &nbsp;
+	</td>
+
+	<!-- link to advanced search (english) -->
+	<td align=right>
+		<form action="advsearch_eng.php" method=GET>
+		<input alt="חיפוש מתקדם באנגלית" type="image" src="images/advanced_search_eng.gif">
+		</form>
+	</td>
+
+	<!-- link to simple search (english) -->
+	<td align=right>
+		<form action="search_eng.php" method=GET>
+		<input alt="חיפוש באנגלית" type="image" src="images/search_eng.gif">
+		</form>
+	</td>
+
+	<!-- link to advanced search (hebrew) -->
+	<td align=right>
+		<form action="advsearch.php" method=GET>
+		<input alt="חיפוש מתקדם" type="image" src="images/advanced_search_heb.gif">
+		</form>
+	</td>
+
+	<!-- link to simple search (hebrew) -->
+	<td align=right>
+		<form action="search.php" method=GET>
+		<input alt="חיפוש" type="image" src="images/search_heb.gif">
+		</form>
+	</td>
+
+</tr>
+</table>
+
+    <script>
+            function chooseVal(col,code,id,lang,id2)
+            {
+                 self.close();
+                //Dynamically defines the value of search form field
+                // and closes the window.
+                if(col != "")
+                {
+                       // determine the direction of the text according to language.
+                       // (ltr for english, rtl for hebrew)
+                       if (lang == "en")
+                       {
+                       		// for values who has 3 feilds like
+                       		// solist, solist2, solist3
+                       		// we need to attach the right digit after the name
+                       		// so we wont have ambiguity on fields values
+
+                            if ((code == "11") || (code == "15")|| (code == "17") || (code == "19") || (code == "21")) //subject2, soloist2...
+                               eval("opener.searchForm." + col + "2.dir=\"" + "ltr" + "\";");
+                            else if ((code == "12") || (code == "16")|| (code == "18") || (code == "20") || (code == "22")) //subject3, soloist3...
+                               eval("opener.searchForm." + col + "3.dir=\"" + "ltr" + "\";");
+                            else
+                               eval("opener.searchForm." + col + ".dir=\"" + "ltr" + "\";");
+
+                       }
+                       else if (lang == "heb")
+                       {
+                            if ((code == "11") || (code == "15")|| (code == "17") || (code == "19") || (code == "21")) //subject2, soloist2...
+                               eval("opener.searchForm." + col + "2.dir=\"" + "rtl" + "\";");
+                            else if ((code == "12") || (code == "16")|| (code == "18") || (code == "20") || (code == "22")) //subject2, soloist2...
+                               eval("opener.searchForm." + col + "3.dir=\"" + "rtl" + "\";");
+                            else
+                               eval("opener.searchForm." + col + ".dir=\"" + "rtl" + "\";");
+                       }
+                       if ((code == "13") || (code == "14"))// if there are composer & composer2 and one of them was chosen a value.
+                       {
+                         // fill both hebrew and english fields when one of them is chosen. (admin).
+                         // case is different when there is only one field. (search)
+                           eval("opener.searchForm." + col + ".value=\"" + id + "\";");
+                           eval("opener.searchForm." + col + ".dir=\"" + "ltr" + "\";");
+                           eval("opener.searchForm." + col + "2.value=\"" + id2 + "\";");
+                           eval("opener.searchForm." + col + "2.dir=\"" + "rtl" + "\";");
+                       }
+
+                       if ((code == "11") || (code == "15")|| (code == "17") || (code == "19") || (code == "21")) //subject2, soloist2...
+                           eval("opener.searchForm." + col + "2.value=\"" + id + "\";");
+                       else if ((code == "12") || (code == "16")|| (code == "18") || (code == "20") || (code == "22")) //subject3, soloist3...
+                           eval("opener.searchForm." + col + "3.value=\"" + id + "\";");
+                       else
+                       {
+                           eval("opener.searchForm." + col + ".value=\"" + id + "\";");
+                       }
+                }
+                self.close();
+            }
+    </script>
+
+	<script language="JavaScript">
+		// creates the letters at the top, each one with its link
+		function loadLetter(let,lang, code)
+		{
+		  document.location.href="indexWin.php?let=" + let + "&lang=" + lang + "&code=" + code;
+		}
+	</script>
+
+  </head>
+
+
+<!-- override the stylesheet's defaults -->
+<body style="background-color: white;">
+<center>
+<a href="javascript: self.close();" class='recordTitle'>סגור חלון</a>
+<form name=listForm><table align=center class='recordTitle'>
+<tr><td class=bigTitle> נא לבחור מהרשימה </td></tr>
+<tr><td height=15> </td></tr></table>
+  <P>
+
+  <a class='recordTitle' href="javascript: loadLetter('A','en', '');"><b>A</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('B','en', '');"><b>B</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('C','en', '');"><b>C</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('D','en', '');"><b>D</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('E','en', '');"><b>E</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('F','en', '');"><b>F</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('G','en', '');"><b>G</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('H','en', '');"><b>H</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('I','en', '');"><b>I</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('J','en', '');"><b>J</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('K','en', '');"><b>K</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('L','en', '');"><b>L</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('M','en', '');"><b>M</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('N','en', '');"><b>N</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('O','en', '');"><b>O</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('P','en', '');"><b>P</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('Q','en', '');"><b>Q</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('R','en', '');"><b>R</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('S','en', '');"><b>S</b></a><br><a class='recordTitle' href="javascript: loadLetter('T','en', '');"><b>T</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('U','en', '');"><b>U</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('V','en', '');"><b>V</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('W','en', '');"><b>W</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('X','en', '');"><b>X</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('Y','en', '');"><b>Y</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('Z','en', '');"><b>Z</b></a>&nbsp<P><P><a class='recordTitle' href="javascript: loadLetter('א','heb', '');"><b>א</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('ב','heb', '');"><b>ב</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('ג','heb', '');"><b>ג</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('ד','heb', '');"><b>ד</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('ה','heb', '');"><b>ה</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('ו','heb', '');"><b>ו</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('ז','heb', '');"><b>ז</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('ח','heb', '');"><b>ח</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('ט','heb', '');"><b>ט</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('י','heb', '');"><b>י</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('כ','heb', '');"><b>כ</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('ל','heb', '');"><b>ל</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('מ','heb', '');"><b>מ</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('נ','heb', '');"><b>נ</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('ס','heb', '');"><b>ס</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('ע','heb', '');"><b>ע</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('פ','heb', '');"><b>פ</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('צ','heb', '');"><b>צ</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('ק','heb', '');"><b>ק</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('ר','heb', '');"><b>ר</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('ש','heb', '');"><b>ש</b></a>&nbsp<a class='recordTitle' href="javascript: loadLetter('ת','heb', '');"><b>ת</b></a>&nbsp</center> <BR><BR><tr><td height=30>&nbsp;</td></tr></table></form>
+
+  </body>
+  </html>
