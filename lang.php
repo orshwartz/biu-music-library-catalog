@@ -34,7 +34,7 @@ $lang_terms['title'][$ENGLISH] = 'Title (Composition, Song)' ;
 $lang_terms['title'][$HEBREW] = 'כותר (יצירה, שיר)' ;
 
 $lang_terms['secondTitle'][$ENGLISH] = 'Added title' ;
-$lang_terms['secondTitle'][$HEBREW] = 'כותר נוסף' ;
+$lang_terms['secondTitle'][$HEBREW] = 'כותר פריט' ;
 
 $lang_terms['search'][$ENGLISH] = 'Search' ;
 $lang_terms['search'][$HEBREW] = 'חפש' ;

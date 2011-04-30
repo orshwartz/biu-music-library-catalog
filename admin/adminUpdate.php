@@ -737,7 +737,7 @@ if (!isset($mode)) {
 			<td align=center>
             	<input type=text name="item_second_title" dir=ltr value="<?php echo $item_second_title ;?>">
             </td>
-		    <td align=right>כותר נוסף</td>
+		    <td align=right>כותר פריט</td>
         </tr>
 		<tr>
 			<td align=center>
