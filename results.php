@@ -150,7 +150,7 @@ if (isset($action)) {
 
     // ////////////////////// end of definition of variables used in paging of results //////////////////////////////////
 
-    $pageSize = 15; // show no more than 15 rows of results on each page
+    $pageSize = 25; // show no more than 25 rows of results on each page
 
     $curPage = &$_GET['curPage'];
     $startRow = &$_GET['startRow'];
