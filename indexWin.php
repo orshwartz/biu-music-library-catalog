@@ -1,11 +1,11 @@
 <!-- This file brings up the pop-up window when clicking on the
 	index button. the function openModal() calls this page, along
-	with a code that defines wbich category we need to display.
-	Builds the list of avialable values of requested type
+	with a code that defines which category we need to display.
+	Builds the list of available values of requested type
     (Soloist,Performance group, Orchestra, Conductor, Subject or Composer)
  	depends on parameter passed.
-	Used to simplify search process to the user, by giving to him/her
-	ll possible values for selected criteria.
+	Used to simplify search process to the user, by giving him/her
+	all possible values for selected criteria.
 	Click on any item in this list closes the window with the list
 	and writes selected value to the appropriate field in the search form.
  -->
@@ -33,6 +33,7 @@ include_once('db_common.php');
 	// 8		:			$column = "collection";
 	// 9		:			$column = "composition_formal_name";
 	//10		:			$column = "series";
+	//23		:			$column = "second_author";
 ?>
     <script>
 
@@ -80,9 +81,11 @@ include_once('db_common.php');
                        }
 
                        if ((code == "11") || (code == "15")|| (code == "17") || (code == "19") || (code == "21")) //subject2, soloist2...
-                           eval("opener.searchForm." + col + "2.value=\"" + my_add_slashes(id) + "\";");
+                           eval("opener.searchForm." + col + "2.value=\"" + my_add_slashes(id) + "\";");                           
                        else if ((code == "12") || (code == "16")|| (code == "18") || (code == "20") || (code == "22")) //subject3, soloist3...
                            eval("opener.searchForm." + col + "3.value=\"" + my_add_slashes(id) + "\";");
+                       else if (code == "23")	// The index showed "composer" but we need to fill "second_author"
+                           eval("opener.searchForm." + "second_author" + ".value=\"" + my_add_slashes(id) + "\";");
                        else
                        {
                            eval("opener.searchForm." + col + ".value=\"" + my_add_slashes(id) + "\";");
@@ -182,6 +185,8 @@ include_once('db_common.php');
         case "6":	// composer (one language, as used in the search system)
         case "13":	// composer both in english and in hebrew, as
         case "14":	// used in the admin system
+        case "23":	// used in the admin system (for second_author, but options for it
+        			// should be taken from "composer"
             $column = "composer";
             break;
         case "7":
@@ -336,8 +341,8 @@ include_once('db_common.php');
                 $printValue = $resultArr[$i]->composer;
                 $printValue2 = $resultArr[$i]->hebrew_composer;
                 echo "<tr>";
-                if ($code == "6") {	// used in the search system -
-                					// both names are linked to same field
+                if (($code == "6") ||	// 6 used in the search system and 23 in admin -
+                	($code == "23")) {	// both names are linked to same field
                     if ($lang == "en") {
                         echo "<td dir=ltr><a href=\"javascript: chooseVal('" . $column . "','" . $code . "','" . addslashes($printValue) . "', '" . $lang . "')\">" . stripslashes($printValue) . "</a></td>";
                         echo "<td width=10% align=center> - </td>";
@@ -347,7 +352,8 @@ include_once('db_common.php');
                         echo "<td width=10% align=center> - </td>";
                         echo "<td dir=rtl><a href=\"javascript: chooseVal('" . $column . "','" . $code . "','" . addslashes($printValue2) . "', '" . $lang . "')\">" . stripslashes($printValue2) . "</a></td>";
                     }
-                } else if (($code == "13") || ($code == "14")) {
+                } else if (($code == "13") ||
+                		   ($code == "14")) {
                 	// used in the admin system - should fill 2 fields together -
                 	// composer and hebrew composer
                     echo "<td dir=ltr><a href=\"javascript: chooseVal('" . $column . "','" . $code . "','" . get_php_string(addslashes($printValue)) . "', '" . $lang . "','" . get_php_string(addslashes($printValue2)) . "')\">" . get_php_string(stripslashes($printValue)) . "</a></td>";

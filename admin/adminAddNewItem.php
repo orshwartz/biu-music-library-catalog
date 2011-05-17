@@ -738,7 +738,16 @@ if ($showmsg)
 		<td align=center>
 			<input type=text name="second_author" dir=ltr value="<?php echo get_php_string($second_author);?>">
 		</td>
-		<td align=right>מחבר שותף</td>
+		<td align=right>
+			<table border=0 bordercolor=black align=center width=100% class="dataTable">
+				<tr>
+					<td align=center width=20>
+						 <a href="javascript: openModal(23);"><img src="../images/indexH.gif" border=0></a>
+					</td>
+					<td align=right>מחבר שותף</td>
+				 </tr>
+			</table>
+		</td>
 	</tr>
 
 	<tr>
