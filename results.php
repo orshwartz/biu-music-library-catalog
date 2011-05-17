@@ -338,7 +338,7 @@ if (isset($action)) {
         if ($curPage != 1) {
             $nextPage = $curPage - 1;
             $link = "results.php?$searchParameters&display=$display&curPage=" . $nextPage . "&startRow=" . $startRow . "&action=2&mode=" . $mode;
-            $previous_page = "<center><a href=\"" . $link . "\" class=\"link3\">" . $lang_terms['toPrevResults'][$lang] . "</a></center>" ;
+            $previous_page = "<a href=\"" . $link . "\" class=\"link3\">" . $lang_terms['toPrevResults'][$lang] . "</a>" ;
         } else {
             $previous_page = "" ;
         }
@@ -348,7 +348,7 @@ if (isset($action)) {
         if (($curPage != $pageNumber) && ($pageNumber != 0)) {
             $nextPage = $curPage + 1;
             $link = "results.php?$searchParameters&display=$display&curPage=" . $nextPage . "&startRow=" . $startRow . "&action=2&mode=" . $mode;
-            $next_page = "<center><a href=\"" . $link . "\" class=\"link3\">" . $lang_terms['toNextResults'][$lang] . "</a></center>";
+            $next_page = "<a href=\"" . $link . "\" class=\"link3\">" . $lang_terms['toNextResults'][$lang] . "</a>";
         } else {
             $next_page = "";
         }
@@ -422,14 +422,21 @@ if (isset($action)) {
     // Here we show page numbers as links and also links to the "Next page" and "Previous page",
     // if it's nessecary (the query returned more than $pageSize results).
     ?>
- <table cellpadding="0" cellspacing="0" border="0" width="60%" align=center class="recordTitle">
+ <table cellpadding="8" cellspacing="0" border="0" align=center class="recordTitle">
  <tr>
   <td colspan=3 height=20>&nbsp;</td>
  </tr>
- <tr>
- <td class="link3" colspan=2 align="center" > <!-- valign="middle" -->
+ <tr class="link3">
  <?php
-    for ($count = 0; $count < $pageNumber ; $count++) {
+  	// Print previous page link
+ 	echo "<td>" . $previous_page . "</td>";
+ ?>
+ <td align="center"> <!-- valign="middle" -->
+ <?php 	
+ 	$maxPageLinks = 20;
+    for ($count = max(0,$curPage-$maxPageLinks/2-1);
+    	 $count < min($pageNumber,$curPage+$maxPageLinks/2-1);
+    	 $count++) {
         $string = "";
 
         $linkPage = $count + 1;
@@ -437,27 +444,26 @@ if (isset($action)) {
         if ($linkPage != $curPage) {
             $string = $string . " <a href=\"" . $link . "\" class=\"link3\"><u>";
         } else {
-            $string = $string . " ";
+            $string = $string . " <b>";
         }
         $string = $string . $linkPage ;
         if ($linkPage != $curPage) {
             $string = $string . "</u></a> " ;
         } else {
-            $string = $string . " ";
+            $string = $string . "</b> ";
         }
 
         echo $string;
 
     }
-
-    ?>
+?>
      </td>
+<?php
+  	// Print next page link
+ 	echo "<td>" . $next_page . "</td>";
+?>
     </tr>
-	<tr><td>&nbsp;</td></tr>
-	<tr>
-	<td class="link3" align="center"><b><?php echo $next_page;?></b></td>
-	<td class="link3" align="center"><b><?php echo $previous_page ?></b></td>
-	</tr>
+	<tr><td colspan=3>&nbsp;</td></tr>
 
     </table>
 <?php

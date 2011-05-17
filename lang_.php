@@ -24,11 +24,11 @@ $lang_directions[$HEBREW] = 'rtl' ;
 $lang_aligns[$ENGLISH] = 'left' ;
 $lang_aligns[$HEBREW] = 'right' ;
 
-$lang_terms['toPrevResults'][$ENGLISH] = 'To previous results' ;
-$lang_terms['toPrevResults'][$HEBREW] = 'לתוצאות הקודמות' ;
+$lang_terms['toPrevResults'][$ENGLISH] = 'Previous' ;
+$lang_terms['toPrevResults'][$HEBREW] = 'הקודם' ;
 
-$lang_terms['toNextResults'][$ENGLISH] = 'To next results' ;
-$lang_terms['toNextResults'][$HEBREW] = 'לתוצאות הבאות' ;
+$lang_terms['toNextResults'][$ENGLISH] = 'Next' ;
+$lang_terms['toNextResults'][$HEBREW] = 'הבא' ;
 
 $lang_terms['title'][$ENGLISH] = 'Title (Composition, Song)' ;
 $lang_terms['title'][$HEBREW] = 'כותר (יצירה, שיר)' ;
