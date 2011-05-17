@@ -80,16 +80,35 @@ include_once('db_common.php');
                            eval("opener.searchForm." + col + "2.dir=\"" + "rtl" + "\";");
                        }
 
-                       if ((code == "11") || (code == "15")|| (code == "17") || (code == "19") || (code == "21")) //subject2, soloist2...
-                           eval("opener.searchForm." + col + "2.value=\"" + my_add_slashes(id) + "\";");                           
-                       else if ((code == "12") || (code == "16")|| (code == "18") || (code == "20") || (code == "22")) //subject3, soloist3...
-                           eval("opener.searchForm." + col + "3.value=\"" + my_add_slashes(id) + "\";");
-                       else if (code == "23")	// The index showed "composer" but we need to fill "second_author"
-                           eval("opener.searchForm." + "second_author" + ".value=\"" + my_add_slashes(id) + "\";");
-                       else
-                       {
-                           eval("opener.searchForm." + col + ".value=\"" + my_add_slashes(id) + "\";");
-                       }
+						switch (code) {
+							case "11": /////////
+							case "15": //
+							case "17": // subject2, soloist2...
+							case "19": //
+							case "21": /////////
+								
+								eval("opener.searchForm." + col + "2.value=\"" + my_add_slashes(id) + "\";");
+								break;
+
+							case "12": /////////
+							case "16": //
+							case "18": // subject3, soloist3...
+							case "20": //
+							case "22": /////////
+
+								eval("opener.searchForm." + col + "3.value=\"" + my_add_slashes(id) + "\";");
+								break;
+
+							case "23": // The index showed "composer" but we need to fill "second_author"
+
+								eval("opener.searchForm." + "second_author" + ".value=\"" + my_add_slashes(id) + "\";");
+								break;
+								
+							default:
+
+								eval("opener.searchForm." + col + ".value=\"" + my_add_slashes(id) + "\";");
+								break;
+						}
                 }
                 self.close();
             }
