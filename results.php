@@ -497,10 +497,6 @@ if (isset($action)) {
 <br><br>
 <hr width=500>
 <br><br>
-<!-- back and forward navigation arrows -->
-<a href="javascript:history.forward();"><img src="images/forward_arrow_ani.gif" alt="<?php echo $lang_terms['toNextPage'][$lang] ;
-?>" border=0></a><img src="images/blank.gif"><a href="javascript:history.back();"><img src="images/back_arrow_ani.gif" alt="<?php echo $lang_terms['toPrevPage'][$lang] ;
-?>" border=0></a>
 </center>
 </body>
 </html>
