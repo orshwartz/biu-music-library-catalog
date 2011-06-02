@@ -15,6 +15,22 @@ include_once('searchNavBar.php');
 	<title>מערכת חיפוש נתונים</title>
       <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1255">
 
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type='text/javascript' src='jquery.autocomplete.js'></script>
+	<link rel="stylesheet" type="text/css" href="jquery.autocomplete.css" />
+
+	<script type="text/javascript">
+	$().ready(function() {
+		$("#composer").autocomplete("get_composer_list.php", {
+			width: 260,
+			matchContains: true,
+			selectFirst: false,
+			max: 20,
+			cacheLength: 20
+		});
+	});
+	</script>
+
       <script>
               function openModal(code){
                  // opens a generic dialog with a list of requested group
@@ -52,7 +68,7 @@ include_once('searchNavBar.php');
 
     <tr>
 		<td align=center>
-			<input type=text name="composer" dir=rtl>
+			<input type=text name="composer" id="composer" dir=rtl>
 		</td>
 		<td align=right>
 	        <table border=0 bordercolor=black align=center width=100% class="dataTable">
