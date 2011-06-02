@@ -30,6 +30,12 @@ $lang_terms['toPrevResults'][$HEBREW] = 'הקודם' ;
 $lang_terms['toNextResults'][$ENGLISH] = 'Next' ;
 $lang_terms['toNextResults'][$HEBREW] = 'הבא' ;
 
+$lang_terms['toFirstResultsPage'][$ENGLISH] = 'First' ;
+$lang_terms['toFirstResultsPage'][$HEBREW] = 'ראשון' ;
+
+$lang_terms['toLastResultsPage'][$ENGLISH] = 'Last' ;
+$lang_terms['toLastResultsPage'][$HEBREW] = 'אחרון' ;
+
 $lang_terms['title'][$ENGLISH] = 'Title (Composition, Song)' ;
 $lang_terms['title'][$HEBREW] = 'כותר (יצירה, שיר)' ;
 

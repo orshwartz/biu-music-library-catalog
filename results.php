@@ -339,23 +339,33 @@ if (isset($action)) {
 
     // ////////////////////////// Paging Links generation /////////////////////////////////////////////////////////
     // Calculations based on currnet page and page size, to create links
-    // for paging (Next page/ Previous page)
+    // for paging (First/Last/Next/Previous page)
 
+    // Calculate the result page count
     $pageNumber = $num_rows / $pageSize;
     $pageNumber = floor($pageNumber);
-
     if (($num_rows % $pageSize) != 0)
         $pageNumber += 1;
 
+    $first_page = "";
+        
     $next_page = "";
 
     $previous_page = "";
+    
+    $last_page = "";
 
     if ($num_rows != "0") {
         $string = "<table border=\"0\" bgcolor=\"#9CCEFF\" width=\"320\" cellpadding=\"0\" cellspacing=\"0\" align=\"center\">";
         $string = $string . "<tr><td valign=\"top\" width=\"100\">";
+
+        // If not on first page
         if ($curPage != 1) {
-            $nextPage = $curPage - 1;
+			
+        	$link = "results.php?$searchParameters&display=$display&curPage=" . 1 . "&startRow=" . 1 . "&action=2&mode=" . $mode;
+        	$first_page = "<a href=\"" . $link . "\" class=\"link3\">" . $lang_terms['toFirstResultsPage'][$lang] . "</a>" ;
+        	
+        	$nextPage = $curPage - 1;
             $link = "results.php?$searchParameters&display=$display&curPage=" . $nextPage . "&startRow=" . $startRow . "&action=2&mode=" . $mode;
             $previous_page = "<a href=\"" . $link . "\" class=\"link3\">" . $lang_terms['toPrevResults'][$lang] . "</a>" ;
         } else {
@@ -364,8 +374,12 @@ if (isset($action)) {
 
         $newLine = "";
 
+        // If not on last page
         if (($curPage != $pageNumber) && ($pageNumber != 0)) {
-            $nextPage = $curPage + 1;
+        	$link = "results.php?$searchParameters&display=$display&curPage=" . $pageNumber . "&startRow=" . ($pageSize*$pageNumber+1) . "&action=2&mode=" . $mode;
+        	$last_page = "<a href=\"" . $link . "\" class=\"link3\">" . $lang_terms['toLastResultsPage'][$lang] . "</a>" ;
+        	
+        	$nextPage = $curPage + 1;
             $link = "results.php?$searchParameters&display=$display&curPage=" . $nextPage . "&startRow=" . $startRow . "&action=2&mode=" . $mode;
             $next_page = "<a href=\"" . $link . "\" class=\"link3\">" . $lang_terms['toNextResults'][$lang] . "</a>";
         } else {
@@ -447,6 +461,9 @@ if (isset($action)) {
  </tr>
  <tr class="link3">
  <?php
+ 	// Print first page link
+ 	echo "<td>" . $first_page . "</td>";
+ 
   	// Print previous page link
  	echo "<td>" . $previous_page . "</td>";
  ?>
@@ -480,6 +497,9 @@ if (isset($action)) {
 <?php
   	// Print next page link
  	echo "<td>" . $next_page . "</td>";
+ 	
+ 	// Print last page link
+	echo "<td>" . $last_page . "</td>";
 ?>
     </tr>
 	<tr><td colspan=3>&nbsp;</td></tr>
