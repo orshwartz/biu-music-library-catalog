@@ -1,18 +1,18 @@
 <style type="text/css">
-.bigTitle{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#4B7087;font-size:18px;text-decoration:none;}
+.bigTitle{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#234567;font-size:18px;text-decoration:none;}
 
 .enterTitle1{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#3B6077;font-size:50pt;text-decoration:none;}
 .enterTitle2{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#3B6077;font-size:40pt;text-decoration:none;}
 .enterTitle3{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#3B6077;font-size:35pt;text-decoration:none;font-weight:bold;}
 .enterTitle4{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#3B6077;font-size:30pt;text-decoration:none;}
 
-.menuTitle{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#4B7087;font-size:18px;text-decoration:underline;}
-.normalTitle{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#4B7087;font-size:14px;}
-.smallTitle{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#4B7087;font-size:12px;}
+.menuTitle{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#234567;font-size:18px;text-decoration:underline;}
+.normalTitle{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#234567;font-size:14px;}
+.smallTitle{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#234567;font-size:12px;}
 .recordTitle{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';;font-size:16px;}
 
 body {
-  background-color: #BBE0F7;
+  background-color: #B2D3F0;
 }
 
 .dataTable {
@@ -46,7 +46,7 @@ body {
 }
 
 .dataTable tbody tr {
-	background: #B2D3F0;
+	background: #D1E8FF;
 }
 
 .dataTable tfoot td, tfoot th {
