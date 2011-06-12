@@ -202,6 +202,23 @@ include_once('searchNavBar.php');
 
 	<tr>
 		<td align=center>
+			<input type=text name="series" dir=rtl>
+		</td>
+		<td align=right>
+	        <table border=0 bordercolor=black align=center width=100% class="dataTable">
+	        	<tr>
+					<td align=center width=20>
+						<a href="javascript: openModal(10);"><img src="images/indexH.gif" border=0></a>
+					</td>
+			         <td align=right>
+			         	סדרה
+			         </td>
+	         	</tr>
+	        </table>
+        </td>
+	</tr>
+	<tr>
+		<td align=center>
 			<input type=text name="subject" dir=rtl>
 		</td>
 		<td align=right>

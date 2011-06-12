@@ -65,7 +65,7 @@ include_once('searchNavBar.php');
 		<td align=right>
 			<table border=0 bordercolor=black align=center width=100% class="dataTable">
 				<tr>
-					<td align=left>Composer	</td>
+					<td align=left>Composer</td>
 					<td align=center width=20>
 						<a href="javascript: openModal(6);"><img src="images/indexE.gif" border=0></a>
 					</td>
@@ -83,24 +83,23 @@ include_once('searchNavBar.php');
 			<input type=text name="composition_title">
 		</td>
 	</tr>
+	
 	<tr>
 	    <td align=right>
 	        <table border=0 bordercolor=black align=center width=100% class="dataTable">
 			    <tr>
-					<td align=left>
-					Publisher
-					</td>
+					<td align=left>Publisher</td>
 					<td align=center width=20>
 					  <a href="javascript: openModal(7);"><img src="images/indexE.gif" border=0></a>
 					</td>
 				</tr>
 	         </table>
-
-           	 <td align=center>
-                  <input type=text name="publisher">
-             </td>
-    	</td>
+		</td>
+        <td align=center>
+             <input type=text name="publisher">
+        </td>
 	</tr>
+	
 	<tr>
 		<td align=left>Year </td>
 		<td align=center>
@@ -191,6 +190,24 @@ include_once('searchNavBar.php');
 		        <table border=0 bordercolor=black align=center width=100% class="dataTable">
 		         <tr>
 		              <td align=left>
+		              Series
+		              </td>
+		              <td align=center width=20>
+		                  <a href="javascript: openModal(10);"><img src="images/indexE.gif" border=0></a>
+		              </td>
+		         </tr>
+		         </table>
+		</td>
+		<td align=center>
+		    <input type=text name="series">
+		</td>
+	</tr>
+	
+	<tr>
+		<td align=right>
+		        <table border=0 bordercolor=black align=center width=100% class="dataTable">
+		         <tr>
+		              <td align=left>
 		              Subject
 		              </td>
 		              <td align=center width=20>
@@ -225,7 +242,7 @@ include_once('searchNavBar.php');
 
 	<tr>
 		<td colspan=2 align=center>
-			<input type=submit class="recordTitle" value="     send     ">
+			<input type=submit class="recordTitle" value="     Send     ">
 			<input type=hidden name=action value=1>
 		</td>
 	</tr>

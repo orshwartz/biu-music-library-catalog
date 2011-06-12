@@ -135,6 +135,11 @@ if (isset($action)) {
     else
         $notes = process_data($_GET['notes']);
 
+    if (!isset($_GET['series']))
+        $series = "";
+    else
+        $series = process_data($_GET['series']);
+        
     if (!isset($_GET['subject']))
         $subject = "";
     else
@@ -163,6 +168,7 @@ if (isset($action)) {
 					    "conductor=$conductor&".
 					    "collection=$collection&".
 					    "notes=$notes&".
+    					"series=$series&".
 					    "subject=$subject&".
 					    "item_title=$item_title&".
 					    "item_no=$item_no";
@@ -290,6 +296,13 @@ if (isset($action)) {
         }
         if ($item_no != "")
             $searchQry = $searchQry . " and item_no = '" . $item_no . "'";
+            
+        if ($series != "") {
+            if (determineLang($series) == "en")
+                $searchQry = $searchQry . " and series like '%" . $series . "%'";
+            else if (determineLang($series) == "heb")
+                $searchQry = $searchQry . " and series like binary '%" . $series . "%'";
+        }
 
         if ($subject != "") {
             if (determineLang($subject) == "en") {
