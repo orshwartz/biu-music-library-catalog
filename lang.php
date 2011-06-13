@@ -63,9 +63,6 @@ $lang_terms['fullDescrAction'][$HEBREW] = 'לתיאור מלא של הפריט לחץ על הכותר או ע
 $lang_terms['composer'][$ENGLISH] = 'Composer' ;
 $lang_terms['composer'][$HEBREW] = 'מלחין' ;
 
-$lang_terms['searchGoogle'][$ENGLISH] = 'Search in Google' ;
-$lang_terms['searchGoogle'][$HEBREW] = 'חפש ב-Google' ;
-
 $lang_terms['media'][$ENGLISH] = 'Media' ;
 $lang_terms['media'][$HEBREW] = 'מדיה' ;
 
