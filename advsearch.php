@@ -237,6 +237,13 @@ include_once('searchNavBar.php');
 
 	<tr>
 		<td align=center>
+			<input type=text name="item_second_title" dir=rtl>
+		</td>
+		<td align=right>כותר פריט</td>
+	</tr>
+
+	<tr>
+		<td align=center>
 			<input type=text name="collection" dir=rtl>
 		</td>
 		<td align=right>

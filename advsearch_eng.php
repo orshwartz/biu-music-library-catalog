@@ -222,6 +222,13 @@ include_once('searchNavBar.php');
 	</tr>
 
 	<tr>
+		<td align=left>Added title</td>
+		<td align=center>
+			<input type=text name="item_second_title">
+		</td>
+	</tr>
+
+	<tr>
 	    <td align=right>
         	<table border=0 bordercolor=black align=center width=100% class="dataTable">
             <tr>

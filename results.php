@@ -125,6 +125,11 @@ if (isset($action)) {
     else
         $conductor = process_data($_GET['conductor']);
 
+    if (!isset($_GET['item_second_title']))
+        $item_second_title = "";
+    else
+        $item_second_title = process_data($_GET['item_second_title']);        
+        
     if (!isset($_GET['collection']))
         $collection = "";
     else
@@ -166,7 +171,8 @@ if (isset($action)) {
 					    "performance_group=$performance_group&".
 					    "orchestra=$orchestra&".
 					    "conductor=$conductor&".
-					    "collection=$collection&".
+						"item_second_title=$item_second_title&".
+    					"collection=$collection&".
 					    "notes=$notes&".
     					"series=$series&".
 					    "subject=$subject&".
@@ -209,12 +215,10 @@ if (isset($action)) {
         if ($composition_title != "") {
             if (determineLang($composition_title) == "en") {
                 $searchQry = $searchQry . " and (composition_title like '%" . $composition_title . "%'";
-                $searchQry = $searchQry . " or composition_formal_name like '%" . $composition_title . "%' ";
-                $searchQry = $searchQry . " or item_second_title like '%" . $composition_title . "%') ";
+                $searchQry = $searchQry . " or composition_formal_name like '%" . $composition_title . "%') ";
             } else if (determineLang($composition_title) == "heb") {
                 $searchQry = $searchQry . " and (composition_title like binary '%" . $composition_title . "%'";
-                $searchQry = $searchQry . " or composition_formal_name like binary '%" . $composition_title . "%' ";
-                $searchQry = $searchQry . " or item_second_title like binary '%" . $composition_title . "%') ";
+                $searchQry = $searchQry . " or composition_formal_name like binary '%" . $composition_title . "%') ";
             }
         }
 
@@ -275,6 +279,14 @@ if (isset($action)) {
                 $searchQry = $searchQry . " or conductor3 like binary '%" . $conductor . "%') ";
             }
         }
+        
+        if ($item_second_title != "") {
+            if (determineLang($item_second_title) == "en")
+                $searchQry = $searchQry . " and item_second_title like '%" . $item_second_title . "%' ";
+            else if (determineLang($item_second_title) == "heb")
+                $searchQry = $searchQry . " and item_second_title like binary '%" . $item_second_title . "%' ";
+        }        
+        
         if ($collection != "") {
             if (determineLang($collection) == "en")
                 $searchQry = $searchQry . " and collection like '%" . $collection . "%'";
