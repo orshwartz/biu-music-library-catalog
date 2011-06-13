@@ -65,7 +65,7 @@ include_once('searchNavBar.php');
 	</tr>
 	<tr>
 		<td colspan=2 align=center>
-			<input type=submit class="recordTitle" value="     send     ">
+			<input type=submit class="recordTitle" value="     Send     ">
 			<input type=hidden name=action value=1>
 		</td>
 	</tr>
