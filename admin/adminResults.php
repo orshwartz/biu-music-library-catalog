@@ -261,15 +261,18 @@ if (isset($action)) {
 
             $direction = $lang_directions[$lang] ;
             $align = $lang_aligns[$lang] ;
-            // check if the first char of the composition title is between 0 and 127,
-            // i.e. ascii. if so, align to the left. else (probably hebrew) align to the right.
-            if ((ord(substr($composition_title, 0, 1)) >= 0) && (ord(substr($composition_title, 0, 1)) <= 127))
+            // If assuming English, align to the left.
+            // Else (probably hebrew) align to the right.
+            if (determineLang($composition_title) == "en") {
                 $align_title = "left";
-            else
+                $text_dir = "ltr";
+            }
+            else {
                 $align_title = "right";
-
+                $text_dir = "rtl";
+            }
             echo "<tr>";
-            echo "<td align=left>&nbsp;<a href=\"adminRecord.php?display=heb&mode=$mode&action=$action&id=" . $id . "\">" . ($i + 1) . "</a>&nbsp;</td><td align=left>" . mediaNamebyID($media_id) . "</td><td align=left>" . $composer . "</td><td align=$align_title><a href=\"adminRecord.php?display=heb&mode=$mode&action=$action&id=" . $id . "\">" . $composition_title . "</a></td>";
+            echo "<td align=left>&nbsp;<a href=\"adminRecord.php?display=heb&mode=$mode&action=$action&id=" . $id . "\">" . ($i + 1) . "</a>&nbsp;</td><td align=left>" . mediaNamebyID($media_id) . "</td><td align=left>" . $composer . "</td><td align=$align_title dir=$text_dir><a href=\"adminRecord.php?display=heb&mode=$mode&action=$action&id=" . $id . "\">" . $composition_title . "</a></td>";
             // we got the mode varianle from searchByItem no.
             // if update, display an update link near the result.
             if (isset($mode) && $mode == "update")

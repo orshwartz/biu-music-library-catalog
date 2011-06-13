@@ -24,36 +24,6 @@ include_once('lang.php') ;
 
 
 <?php
-// using first letter in the field to determine its langauge.
-// the alignment should be set according to this.
-function determineLang($field)
-{
-    // Reset non-standard character counter
-	$non_standard_char_count = 0;
-	
-	// For each character in string
-	$field_len = strlen($field);
-	for ($cur_char_idx = 0; $cur_char_idx < $field_len; ++$cur_char_idx)
-	{
-		// If this is a non-standard ASCII code (meaning, extended)
-		if (127 < ord($field[$cur_char_idx]))
-		{
-			// Increase non-standard char count
-			$non_standard_char_count++;
-		}
-		
-		// If found at-least one non-standard code
-		if ($non_standard_char_count > 0)
-		{
-			// Assume Hebrew text
-			return "heb";
-		}
-	}
-	
-	// Assume English text
-	return "en";
-}
-
 if (!isset($_GET['mode']))
     $mode = "";
 else

@@ -45,6 +45,22 @@ $align = $lang_aligns[$lang] ;
 $query = "select * from records where id=" . $id;
 $result = mysql_query($query) ;
 
+// Echo the data aligned according to current language and in direction
+// according to the field text's language.
+function echoFieldData($field_val) {
+	
+	global $lang_directions, $ENGLISH, $HEBREW, $align;
+	
+	if (determineLang($field_val) == "en") {
+		$field_dir = $lang_directions[$ENGLISH];
+	}
+	else {
+		$field_dir = $lang_directions[$HEBREW];
+	}
+    echo "<td dir=" . $field_dir . " align=" . $align . ">";
+    echo $field_val;
+}
+
 // table title
 echo "<br><center>";
 echo "<table>
@@ -98,8 +114,7 @@ echo "<table>
 	     <td align=<?php echo $align;?>>
             <b><?php echo $lang_terms['composerInEnglish'][$lang];?>&nbsp;</b>
 			<?php
-			    echo "<td dir=" . $direction . ">";
-				echo $composer;
+				echoFieldData($composer);
 			?>
 		</td>
 	</tr>
@@ -109,8 +124,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align;?>><b><?php echo $lang_terms['composerInHebrew'][$lang] ;?></b></td>
 			<?php
-				echo "<td dir=" . $direction . ">";
-				echo $hebrew_composer;
+				echoFieldData($hebrew_composer);
 			?>
 		</td>
 	</tr>
@@ -120,8 +134,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align ;?> > <b><?php echo $lang_terms['compositionFormalName'][$lang] ;?></b></td>
 			<?php
-			    echo "<td dir=" . $direction . ">";
-			    echo $composition_formal_name ;
+				echoFieldData($composition_formal_name);
     		?>&nbsp;
 		</td>
 	</tr>
@@ -131,8 +144,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align ;?> ><b><?php echo $lang_terms['title'][$lang] ;?></b></td>
 			<?php
-			echo "<td dir=" . $direction . ">";
-			echo $composition_title;
+				echoFieldData($composition_title);
     		?>&nbsp;
 		</td>
 	</tr>
@@ -142,8 +154,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align ;?> ><b><?php echo $lang_terms['publisher'][$lang] ;?></b></td>
 			<?php
-    		echo "<td dir=" . $direction . ">";
-    		echo $publisher;
+				echoFieldData($publisher);
     		?>&nbsp;
 		</td>
 	</tr>
@@ -153,8 +164,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align ;?> ><b><?php echo $lang_terms['publishLocation'][$lang] ;?></b></td>
 			<?php
-    		echo "<td dir=" . $direction . ">";
-    		echo $publisher_place;
+				echoFieldData($publisher_place);
     		?>&nbsp;
 		</td>
 	</tr>
@@ -164,8 +174,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align ;?> ><b><?php echo $lang_terms['year'][$lang] ;?></b></td>
 			<?php
-    		echo "<td dir=" . $direction . ">";
-    		echo $year ;
+				echoFieldData($year);
     		?>&nbsp;
 		</td>
 	</tr>
@@ -175,8 +184,7 @@ echo "<table>
 	<tr dir=<?php echo $direction ;?>>
 		<td align=<?php echo $align ;?> ><b><?php echo $lang_terms['solist'][$lang] ;?></b></td>
 			<?php
-    		echo "<td dir=" . $direction . ">";
-    		echo $solist;
+				echoFieldData($solist);
     		?>&nbsp;
 		</td>
 	</tr>
@@ -186,8 +194,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align ;?> dir=<?php echo $lang_directions[$lang];?>><b><?php echo $lang_terms['solist'][$lang] . " 2" ;?></b></td>
 			<?php
-	    	echo "<td dir=" . $direction . ">";
-	    	echo $solist2 ;
+				echoFieldData($solist2);
 	    	?>&nbsp;
 		</td>
 	</tr>
@@ -197,8 +204,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align ;?> dir=<?php echo $lang_directions[$lang];?>><b><?php echo $lang_terms['solist'][$lang] . " 3" ;?></b></td>
 			<?php
-			echo "<td dir=" . $direction . ">";
-    		echo $solist3;
+				echoFieldData($solist3);
     		?>&nbsp;
 		</td>
 	</tr>
@@ -208,8 +214,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align ;?> ><b><?php echo $lang_terms['performanceGroup'][$lang] ;?></b></td>
 			<?php
-    		echo "<td dir=" . $direction . ">";
-    		echo $performance_group;
+ 				echoFieldData($performance_group);
     		?>&nbsp;
 		</td>
 	</tr>
@@ -219,8 +224,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align ;?> dir=<?php echo $direction;?>><b><?php echo $lang_terms['performanceGroup'][$lang] . " 2" ;?></b></td>
 			<?php
-    		echo "<td dir=" . $direction . ">";
-    		echo $perfomance_group2;
+				echoFieldData($perfomance_group2);
     		?>&nbsp;
 		</td>
 	</tr>
@@ -230,8 +234,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align ;?> dir=<?php echo $lang_directions[$lang];?>><b><?php echo $lang_terms['performanceGroup'][$lang] . " 3" ;?></b></td>
 			<?php
-    		echo "<td dir=" . $direction . ">";
-    		echo $perfomance_group3;
+				echoFieldData($perfomance_group3);
     		?>&nbsp;
 		</td>
 	</tr>
@@ -241,8 +244,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align;?>><b><?php echo $lang_terms['orchestra'][$lang] ;?></b></td>
 			<?php
-    		echo "<td dir=" . $direction . ">";
-    		echo $orchestra;
+				echoFieldData($orchestra);
     		?>&nbsp;
 		</td>
 	</tr>
@@ -252,8 +254,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align;?> dir=<?php echo $direction;?>><b><?php echo $lang_terms['orchestra'][$lang] . " 2" ;?></b></td>
 			<?php
-    		echo "<td dir=" . $direction . ">";
-		    echo $orchestra2;
+				echoFieldData($orchestra2);
     		?>&nbsp;
 		</td>
 	</tr>
@@ -263,8 +264,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align ;?> dir=<?php echo $direction ;?>><b><?php echo $lang_terms['orchestra'][$lang] . " 3" ;?></b></td>
 			<?php
-		    echo "<td dir=" . $direction . ">";
-    		echo $orchestra3;
+				echoFieldData($orchestra3);
     		?>&nbsp;
 		</td>
 	</tr>
@@ -274,8 +274,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align;?>> <b><?php echo $lang_terms['conductor'][$lang] ;?></b></td>
 			<?php
-	    	echo "<td dir=" . $direction . ">";
-	    	echo $conductor;
+				echoFieldData($conductor);
 	    	?>&nbsp;
 		</td>
 	</tr>
@@ -285,8 +284,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align;?> dir=<?php echo $direction;?>><b><?php echo $lang_terms['conductor'][$lang] . " 2" ;?></b></td>
 			<?php
-    		echo "<td dir=" . $direction . ">";
-    		echo $conductor2;
+				echoFieldData($conductor2);
     		?>&nbsp;
 		</td>
 	</tr>
@@ -296,8 +294,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align;?> dir=<?php echo $direction;?>><b><?php echo $lang_terms['conductor'][$lang] . " 3" ;?></b></td>
 			<?php
-    		echo "<td dir=" . $direction . ">";
-    		echo $conductor3;
+				echoFieldData($conductor3);
     		?>&nbsp;
 		</td>
 	</tr>
@@ -312,7 +309,13 @@ echo "<table>
     		echo "<td dir=" . $direction . ">";
     		?>
 
-			<textarea scrolling=no rows='6' cols='40' wrap='soft' style='width: 100%;overflow:auto' readonly><?php echo $notes;?></textarea>
+				<?php
+						echo "<textarea scrolling=no rows='6' cols='40' wrap='soft' dir=";  
+						echo (determineLang($notes)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];
+						echo " style='width: 100%;overflow:auto' readonly=\"readonly\">";
+						echo $notes;
+						echo "</textarea>";
+				?>
 		</td>
 	</tr>
 	<?php }?>
@@ -321,8 +324,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align ;?>><b><?php echo $lang_terms['series'][$lang] ;?></b></td>
 			<?php
-	    	echo "<td dir=" . $direction . ">";
-	    	echo $series;
+				echoFieldData($series);
 	    	?>&nbsp;
 		</td>
 	</tr>
@@ -332,8 +334,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align ;?>><b><?php echo $lang_terms['subject'][$lang] ;?></b></td>
 			<?php
-    		echo "<td dir=" . $direction . ">";
-    		echo $subject;
+				echoFieldData($subject);
     		?>&nbsp;
 		</td>
 	</tr>
@@ -343,8 +344,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align;?> dir= <?php echo $direction ;?>><b><?php echo $lang_terms['subject'][$lang] . " 2" ;?></b></td>
 			<?php
-    		echo "<td dir=" . $direction . ">";
-    		echo $subject2;
+				echoFieldData($subject2);
     		?>&nbsp;
 		</td>
 	</tr>
@@ -354,8 +354,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align ;?> dir=<?php echo $direction ;?>><b><?php echo $lang_terms['subject'][$lang] . " 3" ;?></b></td>
 			<?php
-    		echo "<td dir=" . $direction . ">";
-    		echo $subject3;
+				echoFieldData($subject3);
     		?>&nbsp;
 		</td>
 	</tr>
@@ -365,8 +364,7 @@ echo "<table>
 	<tr>
 		<td align= <?php echo $align ;?> ><b><?php echo $lang_terms['secondTitle'][$lang] ;?></b></td>
 			<?php
-    		echo "<td dir=" . $direction . ">";
-    		echo $item_second_title;
+				echoFieldData($item_second_title);
     		?>&nbsp;
 		</td>
 	</tr>
@@ -376,8 +374,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align ;?>><b><?php echo $lang_terms['coAuthor'][$lang] ;?></b></td>
 			<?php
-    		echo "<td dir=" . $direction . ">";
-    		echo $secondAuthor;
+				echoFieldData($secondAuthor);
     		?>&nbsp;
 		</td>
 	</tr>
@@ -387,8 +384,7 @@ echo "<table>
 	<tr>
 		<td align=<?php echo $align ;?>><b><?php echo $lang_terms['collection'][$lang] ;?></b></td>
 			<?php
-		    echo "<td dir=" . $direction . ">";
-    		echo $collection;
+				echoFieldData($collection);
     		?>&nbsp;
 		</td>
 	</tr>
