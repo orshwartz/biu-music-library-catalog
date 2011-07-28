@@ -11,6 +11,8 @@ include_once('../styles.inc');
 	Prompts the user to choose the operation he'd like to perform. -->
 <html>
 <head>
+	<link rel="icon" href="../images/DataInput.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="../images/DataInput.ico" type="image/x-icon">
 	<title>מערכת הזנת נתונים</title>
         <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1255">
 </head>

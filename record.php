@@ -19,6 +19,8 @@ include_once('lang.php') ;
 
 <html>
 <head>
+<link rel="icon" href="images/DataSearch.ico" type="image/x-icon">
+<link rel="shortcut icon" href="images/DataSearch.ico" type="image/x-icon">
 	<title>מערכת חיפוש נתונים</title>
 		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1255">
 </head>

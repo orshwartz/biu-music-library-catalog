@@ -14,6 +14,8 @@ include_once('../common.php');
 	It shows a pop-up window where one can change the media names. -->
 <html>
 <head>
+	<link rel="icon" href="../images/DataInput.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="../images/DataInput.ico" type="image/x-icon">
 	<title>עדכון מדיה</title>
         <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1255">
 </head>
