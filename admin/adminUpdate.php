@@ -341,7 +341,7 @@ if (!isset($mode)) {
         ?>
 		<tr>
 			<td align=center>
-				<input type=text name="composer" value="<?php echo $composer;?>" dir=ltr>
+				<input type=text name="composer" value="<?php echo get_php_string($composer);?>" dir=ltr>
 			</td>
 			<td align=right>
 				<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -358,7 +358,7 @@ if (!isset($mode)) {
  		</tr>
 		<tr>
 			<td align=center width="50%">
-				<input type=text name="composer2" value="<?php echo $composer2;?>" dir=rtl>
+				<input type=text name="composer2" value="<?php echo get_php_string($composer2);?>" dir=rtl>
 			</td>
 			<td align=right>
 				<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -375,7 +375,7 @@ if (!isset($mode)) {
 		</tr>
 		<tr>
 			<td align=center>
-				<input type=text name="composition_formal_name" value="<?php echo $composition_formal_name;?>" dir=ltr>
+				<input type=text name="composition_formal_name" value="<?php echo get_php_string($composition_formal_name);?>" dir=ltr>
 			</td>
 			<td align=right>
 				<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -392,7 +392,7 @@ if (!isset($mode)) {
         </tr>
 		<tr>
 	    	<td align=center>
-				<input type=text name="composition_title" value="<?php echo $composition_title;?>" dir=ltr>
+				<input type=text name="composition_title" value="<?php echo get_php_string($composition_title);?>" dir=ltr>
 			</td>
 			<td align=right>(כותר (יצירה, שיר</td>
 		</tr>
@@ -407,7 +407,7 @@ if (!isset($mode)) {
 							<table border=0 bordercolor=black align=center class='dataTable'>
 								<tr>
 									<td align=center>
-										<input type=text name="solist" dir=ltr value="<?php echo $solist;?>">
+										<input type=text name="solist" dir=ltr value="<?php echo get_php_string($solist);?>">
 									</td>
 									<td align=right>
 										<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -422,7 +422,7 @@ if (!isset($mode)) {
 								</tr>
 								<tr>
 									<td align=center>
-										<input type=text name="solist2" dir=ltr value="<?php echo $solist2;?>">
+										<input type=text name="solist2" dir=ltr value="<?php echo get_php_string($solist2);?>">
 									</td>
 									<td align=right>
 										<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -437,7 +437,7 @@ if (!isset($mode)) {
 								</tr>
 								<tr>
 									<td align=center>
-										<input type=text name="solist3" dir=ltr value="<?php echo $solist3;?>">
+										<input type=text name="solist3" dir=ltr value="<?php echo get_php_string($solist3);?>">
 									</td>
 									<td align=right>
 										<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -452,7 +452,7 @@ if (!isset($mode)) {
 								</tr>
                              	<tr>
 									<td align=center>
-										<input type=text name="performance_group" dir=ltr value="<?php echo $performance_group;?>">
+										<input type=text name="performance_group" dir=ltr value="<?php echo get_php_string($performance_group);?>">
 									</td>
 									<td align=right>
 										<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -467,7 +467,7 @@ if (!isset($mode)) {
 								</tr>
 								<tr>
 									<td align=center>
-										<input type=text name="performance_group2" dir=ltr value="<?php echo $performance_group2;?>">
+										<input type=text name="performance_group2" dir=ltr value="<?php echo get_php_string($performance_group2);?>">
 									</td>
 									<td align=right>
 										<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -482,7 +482,7 @@ if (!isset($mode)) {
 								</tr>
 								<tr>
 									<td align=center>
-										<input type=text name="performance_group3" dir=ltr value="<?php echo $performance_group3;?>">
+										<input type=text name="performance_group3" dir=ltr value="<?php echo get_php_string($performance_group3);?>">
 									</td>
 									<td align=right>
 										<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -497,7 +497,7 @@ if (!isset($mode)) {
 								</tr>
 								<tr>
 									<td align=center>
-										<input type=text name="orchestra" dir=ltr value="<?php echo $orchestra;?>">
+										<input type=text name="orchestra" dir=ltr value="<?php echo get_php_string($orchestra);?>">
 									</td>
 									<td align=right>
 										<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -512,7 +512,7 @@ if (!isset($mode)) {
 								</tr>
 								<tr>
 									<td align=center>
-										<input type=text name="orchestra2" dir=ltr value="<?php echo $orchestra2;?>">
+										<input type=text name="orchestra2" dir=ltr value="<?php echo get_php_string($orchestra2);?>">
 									</td>
 									<td align=right>
 										<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -527,7 +527,7 @@ if (!isset($mode)) {
 								</tr>
 								<tr>
 									<td align=center>
-										<input type=text name="orchestra3" dir=ltr value="<?php echo $orchestra3;?>">
+										<input type=text name="orchestra3" dir=ltr value="<?php echo get_php_string($orchestra3);?>">
 									</td>
 									<td align=right>
 										<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -542,7 +542,7 @@ if (!isset($mode)) {
 								</tr>
 								<tr>
 									<td align=center>
-										<input type=text name="conductor" dir=ltr value="<?php echo $conductor;?>">
+										<input type=text name="conductor" dir=ltr value="<?php echo get_php_string($conductor);?>">
 									</td>
 									<td align=right>
 										<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -557,7 +557,7 @@ if (!isset($mode)) {
 								</tr>
 								<tr>
 									<td align=center>
-										<input type=text name="conductor2" dir=ltr value="<?php echo $conductor2;?>">
+										<input type=text name="conductor2" dir=ltr value="<?php echo get_php_string($conductor2);?>">
 									</td>
 									<td align=right>
 										<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -572,7 +572,7 @@ if (!isset($mode)) {
 								</tr>
 								<tr>
 									<td align=center>
-										<input type=text name="conductor3" dir=ltr value="<?php echo $conductor3;?>">
+										<input type=text name="conductor3" dir=ltr value="<?php echo get_php_string($conductor3);?>">
 									</td>
 									<td align=right>
 										<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -593,7 +593,7 @@ if (!isset($mode)) {
     </tr>
 	<tr>
 		<td align=center>
-			<input type=text name="subject" dir=ltr value="<?php echo $subject;?>">
+			<input type=text name="subject" dir=ltr value="<?php echo get_php_string($subject);?>">
 		</td>
 		<td align=right>
 			<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -608,7 +608,7 @@ if (!isset($mode)) {
 	</tr>
 	<tr>
 		<td align=center>
-			<input type=text name="subject2" dir=ltr value="<?php echo $subject2;?>">
+			<input type=text name="subject2" dir=ltr value="<?php echo get_php_string($subject2);?>">
 		</td>
 		<td align=right>
 			<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -623,7 +623,7 @@ if (!isset($mode)) {
 	</tr>
 	<tr>
 		<td align=center>
-			<input type=text name="subject3" dir=ltr value="<?php echo $subject3;?>">
+			<input type=text name="subject3" dir=ltr value="<?php echo get_php_string($subject3);?>">
 		</td>
 		<td align=right>
 			<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -638,7 +638,7 @@ if (!isset($mode)) {
 	 </tr>
 	<tr>
 		<td align=center>
-			<input type=text name="second_author" dir=ltr value="<?php echo $second_author;?>">
+			<input type=text name="second_author" dir=ltr value="<?php echo get_php_string($second_author);?>">
 		</td>
 		<td align=right>מחבר שותף</td>
 	</tr>
@@ -652,11 +652,11 @@ if (!isset($mode)) {
         ?>
 
       <!-- save the old item number-->
-      <input type=hidden name="old_item_no" value="<?php echo $item_no;?>">
+      <input type=hidden name="old_item_no" value="<?php echo get_php_string($item_no);?>">
 
         <tr>
 			<td align=center>
-				<input type=text name="item_no" dir=ltr value="<?php echo $item_no;?>">
+				<input type=text name="item_no" dir=ltr value="<?php echo get_php_string($item_no);?>">
 			</td>
 			<td align=right>מס' פריט</td>
 		</tr>
@@ -689,7 +689,7 @@ if (!isset($mode)) {
 		</tr>
 		<tr>
 	    	<td align=center>
-				<input type=text name="publisher" dir=ltr value="<?php echo $publisher;?>">
+				<input type=text name="publisher" dir=ltr value="<?php echo get_php_string($publisher);?>">
 	    	</td>
 	    	<td align=right>
 		  		<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -704,13 +704,13 @@ if (!isset($mode)) {
         </tr>
 		<tr>
 			<td align=center>
-				<input type=text name="publisher_place" dir=ltr value="<?php echo $publisher_place ;?>">
+				<input type=text name="publisher_place" dir=ltr value="<?php echo get_php_string($publisher_place);?>">
 			</td>
 			<td align=right>מקום הוצאה לאור</td>
 		</tr>
 		<tr>
 			<td align=center>
-				<input type=text name="year" dir=ltr value="<?php echo $year ;?>">
+				<input type=text name="year" dir=ltr value="<?php echo get_php_string($year);?>">
 			</td>
 			<td align=right>שנה </td>
 		</tr>
@@ -722,7 +722,7 @@ if (!isset($mode)) {
 		</tr>
 		<tr>
 			<td align=center>
-				<input type=text name="series" dir=ltr value="<?php echo $series ;?>">
+				<input type=text name="series" dir=ltr value="<?php echo get_php_string($series);?>">
 			</td>
 			<td align=right>
 				<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -737,13 +737,13 @@ if (!isset($mode)) {
 		</tr>
         <tr>
 			<td align=center>
-            	<input type=text name="item_second_title" dir=ltr value="<?php echo $item_second_title ;?>">
+            	<input type=text name="item_second_title" dir=ltr value="<?php echo get_php_string($item_second_title);?>">
             </td>
 		    <td align=right>כותר פריט</td>
         </tr>
 		<tr>
 			<td align=center>
-				<input type=text name="collection" dir=ltr value = "<?php echo $collection ;?>" >
+				<input type=text name="collection" dir=ltr value = "<?php echo get_php_string($collection);?>" >
 			</td>
 			<td align=right>
 				<table border=0 bordercolor=black align=center width=100% class="dataTable">
