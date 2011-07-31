@@ -61,8 +61,10 @@ function restore_hacked_string($str)
 	return str_replace ('zQuotesz', "\"", $str);
 }
 
-// using first letter in the field to determine its langauge.
+// using first letters in the field to determine its langauge.
 // the alignment should be set according to this.
+// Basically, assumes string is Hebrew if finds a non-standard
+// ASCII character and otherwise assumes English string.
 function determineLang($field)
 {
     // Reset non-standard character counter
@@ -130,7 +132,7 @@ function my_add_slashes (val)
 	return newVal ;
 }
 
-<!-- Places mouse focus on the first text field in each page.-->
+<!-- Places cursor focus on the first text field in each page.-->
 function placeFocus(formInst)
 {
 	if (document.forms.length > 0)
