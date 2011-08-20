@@ -46,6 +46,27 @@ function get_php_string($str)
 	return $tmp;
 }
 
+// This function returns the concatenation of &name=$value if
+// value is not empty. Otherwise, it returns an empty string.
+// $addAmper indicates whether to append an ampersand or not at
+// the end, if string is not empty.
+function get_url_param_str_if_not_empty($name,$value,$addAmper)
+{
+	// If value is empty
+	if ($value == "")
+	{
+		$rtrn_str = "";
+	}
+	
+	// Else, value not empty
+	else
+	{
+		$rtrn_str = ($addAmper==true? "&":"").$name."=".$value;
+	}
+	
+	return $rtrn_str;
+}
+
 function my_add_slashes($str)
 {
 	return str_replace ("\"", "\\\"", $str);

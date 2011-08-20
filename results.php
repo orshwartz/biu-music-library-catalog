@@ -134,23 +134,35 @@ if (isset($action)) {
 
     // this string should be passed with the url in case there's more than
     // one page of results.
-    $searchParameters = "media_id=$media_id&".
-    					"composer=$composer&".
-    					"composition_title=$composition_title&".
-    					"publisher=$publisher&".
-    					"year=$year&".
-					    "solist=$solist&".
-					    "performance_group=$performance_group&".
-					    "orchestra=$orchestra&".
-					    "conductor=$conductor&".
-						"item_second_title=$item_second_title&".
-    					"collection=$collection&".
-					    "notes=$notes&".
-    					"series=$series&".
-					    "subject=$subject&".
-					    "item_title=$item_title&".
-					    "item_no=$item_no";
-
+    $searchParameters =
+		get_url_param_str_if_not_empty("media_id", $media_id, false).
+		get_url_param_str_if_not_empty("composer", $composer, true).
+		get_url_param_str_if_not_empty("composition_title", $composition_title, true).
+		get_url_param_str_if_not_empty("publisher", $publisher, true).
+		get_url_param_str_if_not_empty("year", $year, true).
+		get_url_param_str_if_not_empty("solist", $solist, true).
+		get_url_param_str_if_not_empty("performance_group", $performance_group, true).
+		get_url_param_str_if_not_empty("orchestra", $orchestra, true).
+		get_url_param_str_if_not_empty("conductor", $conductor, true).
+		get_url_param_str_if_not_empty("item_second_title", $item_second_title, true).
+		get_url_param_str_if_not_empty("collection", $collection, true).
+		get_url_param_str_if_not_empty("notes", $notes, true).
+		get_url_param_str_if_not_empty("series", $series, true).
+		get_url_param_str_if_not_empty("subject", $subject, true).
+		get_url_param_str_if_not_empty("item_title", $item_title, true).
+		get_url_param_str_if_not_empty("item_no", $item_no, true);
+	
+	// If an unneeded ampersand is in the beginning, remove it
+	if ($searchParameters[0] == "&")
+	{
+		$searchParameters = substr($searchParameters, 1);
+	}
+	
+	// Get rid of slashes and prepare string for use inside html (quotes
+	// can cause string termination inside html, thus shortening it
+	// prematurely)
+	$searchParameters = get_php_string(stripslashes($searchParameters));
+		
     // ////////////////////// end of definition of variables used in paging of results //////////////////////////////////
 
     $pageSize = 25; // show no more than 25 rows of results on each page
@@ -311,6 +323,7 @@ if (isset($action)) {
         // Use alredy created query
         $runQuery = $_SESSION['sessQuery'];
     }
+
     // put the results in an array (cause SQL has some weird problems when sorting)
     $result = mysql_query($runQuery) ;
     $num_rows = mysql_num_rows($result);
