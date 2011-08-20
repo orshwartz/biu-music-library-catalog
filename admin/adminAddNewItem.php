@@ -413,7 +413,7 @@ if ($showmsg)
 
 	<tr>
 		<td align=center>
-			<input type=text <?php if ($action == "displayitem") echo "readonly" ?> name="composition_formal_name" value="<?php echo get_php_string($composition_formal_name);?>" dir=ltr>
+			<input type=text <?php if ($action == "displayitem") echo "readonly" ?> name="composition_formal_name" value="<?php echo get_php_string($composition_formal_name);?>" dir=<?php echo (determineLang($composition_formal_name)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 		</td>
 		<td align=right>
 			<?php if ($action != "displayitem")
@@ -428,14 +428,14 @@ if ($showmsg)
 
 	<tr>
 	    <td align=center>
-			<input type=text name="composition_title" value="<?php echo get_php_string($composition_title);?>" dir=ltr>
+			<input type=text name="composition_title" value="<?php echo get_php_string($composition_title);?>" dir=<?php echo (determineLang($composition_title)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 		</td>
 		<td align=right>(כותר (יצירה, שיר</td>
 	</tr>
 
 	<tr>
 		<td align=center>
-			<input type=text name="publisher" value="<?php echo get_php_string($publisher);?>" dir=ltr>
+			<input type=text name="publisher" value="<?php echo get_php_string($publisher);?>" dir=<?php echo (determineLang($publisher)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 		</td>
 		<td align=right>
 			<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -451,7 +451,7 @@ if ($showmsg)
 
 	<tr>
 		<td align=center>
-			<input type=text name="publisher_place" value="<?php echo get_php_string($publisher_place) ;?>" dir=ltr>
+			<input type=text name="publisher_place" value="<?php echo get_php_string($publisher_place) ;?>" dir=<?php echo (determineLang($publisher_place)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 		</td>
 		<td align=right>מקום הוצאה לאור</td>
 	</tr>
@@ -474,7 +474,7 @@ if ($showmsg)
 						<table border=0 bordercolor=black class='dataTable' align=center>
 							<tr>
 								<td align=center>
-									<input type=text name="solist" value="<?php echo get_php_string($solist);?>" dir=ltr>
+									<input type=text name="solist" value="<?php echo get_php_string($solist);?>" dir=<?php echo (determineLang($solist)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -489,7 +489,7 @@ if ($showmsg)
 							</tr>
 							<tr>
 								<td align=center>
-									<input type=text name="solist2" value="<?php echo get_php_string($solist2);?>" dir=ltr>
+									<input type=text name="solist2" value="<?php echo get_php_string($solist2);?>" dir=<?php echo (determineLang($solist2)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -504,7 +504,7 @@ if ($showmsg)
 							</tr>
 							<tr>
 								<td align=center>
-									<input type=text name="solist3" value="<?php echo get_php_string($solist3);?>" dir=ltr>
+									<input type=text name="solist3" value="<?php echo get_php_string($solist3);?>" dir=<?php echo (determineLang($solist3)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -520,7 +520,7 @@ if ($showmsg)
 
                              <tr>
 								<td align=center>
-									<input type=text name="performance_group" value="<?php echo get_php_string($performance_group);?>" dir=ltr>
+									<input type=text name="performance_group" value="<?php echo get_php_string($performance_group);?>" dir=<?php echo (determineLang($performance_group)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -536,7 +536,7 @@ if ($showmsg)
 
 							<tr>
 								<td align=center>
-									<input type=text name="performance_group2" value="<?php echo get_php_string($performance_group2);?>" dir=ltr>
+									<input type=text name="performance_group2" value="<?php echo get_php_string($performance_group2);?>" dir=<?php echo (determineLang($performance_group2)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -552,7 +552,7 @@ if ($showmsg)
 
 							<tr>
 								<td align=center>
-									<input type=text name="performance_group3" value="<?php echo get_php_string($performance_group3);?>" dir=ltr>
+									<input type=text name="performance_group3" value="<?php echo get_php_string($performance_group3);?>" dir=<?php echo (determineLang($performance_group3)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -567,7 +567,7 @@ if ($showmsg)
 							</tr>
 							<tr>
 								<td align=center>
-									<input type=text name="orchestra" value="<?php echo get_php_string($orchestra);?>" dir=ltr>
+									<input type=text name="orchestra" value="<?php echo get_php_string($orchestra);?>" dir=<?php echo (determineLang($orchestra)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -582,7 +582,7 @@ if ($showmsg)
 							</tr>
 							<tr>
 								<td align=center>
-									<input type=text name="orchestra2" value="<?php echo get_php_string($orchestra2);?>" dir=ltr>
+									<input type=text name="orchestra2" value="<?php echo get_php_string($orchestra2);?>" dir=<?php echo (determineLang($orchestra2)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -597,7 +597,7 @@ if ($showmsg)
 							</tr>
 							<tr>
 								<td align=center>
-									<input type=text name="orchestra3" value="<?php echo get_php_string($orchestra3);?>" dir=ltr>
+									<input type=text name="orchestra3" value="<?php echo get_php_string($orchestra3);?>" dir=<?php echo (determineLang($orchestra3)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -612,7 +612,7 @@ if ($showmsg)
 							</tr>
 							<tr>
 								<td align=center>
-									<input type=text name="conductor" value="<?php echo get_php_string($conductor);?>" dir=ltr>
+									<input type=text name="conductor" value="<?php echo get_php_string($conductor);?>" dir=<?php echo (determineLang($conductor)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -627,7 +627,7 @@ if ($showmsg)
 							</tr>
 							<tr>
 								<td align=center>
-									<input type=text name="conductor2" value="<?php echo get_php_string($conductor2);?>" dir=ltr>
+									<input type=text name="conductor2" value="<?php echo get_php_string($conductor2);?>" dir=<?php echo (determineLang($conductor2)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -642,7 +642,7 @@ if ($showmsg)
 							</tr>
 							<tr>
 								<td align=center>
-									<input type=text name="conductor3" value="<?php echo get_php_string($conductor3);?>"  dir=ltr>
+									<input type=text name="conductor3" value="<?php echo get_php_string($conductor3);?>"  dir=<?php echo (determineLang($conductor3)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -663,13 +663,13 @@ if ($showmsg)
     </tr>
     <tr>
 		<td align=center>
-			<textarea name="notes" value="<?php echo get_php_string($notes);?>" scrolling=no rows='6' cols='40' wrap='soft' dir=ltr style='width: 100%;overflow:auto'><?php echo $notes;?></textarea>
+			<textarea name="notes" value="<?php echo get_php_string($notes);?>" scrolling=no rows='6' cols='40' wrap='soft' dir=<?php echo (determineLang($notes)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> style='width: 100%;overflow:auto'><?php echo $notes;?></textarea>
 		</td>
 		<td align=right>הערות</td>
 	</tr>
 	<tr>
 		<td align=center>
-			<input type=text name="series" dir=ltr value="<?php echo get_php_string($series) ;?>" >
+			<input type=text name="series" dir=<?php echo (determineLang($series)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($series) ;?>" >
 		</td>
 		<td align=right>
 			<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -684,7 +684,7 @@ if ($showmsg)
 	</tr>
 	<tr>
 		<td align=center>
-			<input type=text name="subject" value="<?php echo get_php_string($subject);?>" dir=ltr>
+			<input type=text name="subject" value="<?php echo get_php_string($subject);?>" dir=<?php echo (determineLang($subject)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 		</td>
 		<td align=right>
 			<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -700,7 +700,7 @@ if ($showmsg)
 
 	<tr>
 		<td align=center>
-			<input type=text name="subject2" dir=ltr value="<?php echo get_php_string($subject2);?>">
+			<input type=text name="subject2" dir=<?php echo (determineLang($subject2)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($subject2);?>">
 		</td>
 		<td align=right>
 			<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -716,7 +716,7 @@ if ($showmsg)
 
 	<tr>
 		<td align=center>
-			<input type=text name="subject3" dir=ltr value="<?php echo get_php_string($subject3);?>">
+			<input type=text name="subject3" dir=<?php echo (determineLang($subject3)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($subject3);?>">
 		</td>
 		<td align=right>
 			<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -731,14 +731,14 @@ if ($showmsg)
 	 </tr>
 	 <tr>
 		<td align=center>
-			<input type=text name="item_second_title" dir=ltr value="<?php echo get_php_string($item_second_title);?>">
+			<input type=text name="item_second_title" dir=<?php echo (determineLang($item_second_title)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($item_second_title);?>">
 		 </td>
 		<td align=right>כותר פריט</td>
 	</tr>
 
 	<tr>
 		<td align=center>
-			<input type=text name="second_author" dir=ltr value="<?php echo get_php_string($second_author);?>">
+			<input type=text name="second_author" dir=<?php echo (determineLang($second_author)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($second_author);?>">
 		</td>
 		<td align=right>
 			<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -754,7 +754,7 @@ if ($showmsg)
 
 	<tr>
 		<td align=center>
-			<input type=text name="collection" dir=ltr value="<?php echo get_php_string($collection);?>">
+			<input type=text name="collection" dir=<?php echo (determineLang($collection)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($collection);?>">
 		</td>
 		<td align=right>
 			<table border=0 bordercolor=black align=center width=100% class="dataTable">
