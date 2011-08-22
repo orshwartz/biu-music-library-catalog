@@ -663,7 +663,7 @@ if ($showmsg)
     </tr>
     <tr>
 		<td align=center>
-			<textarea name="notes" value="<?php echo get_php_string($notes);?>" scrolling=no rows='6' cols='40' wrap='soft' dir=<?php echo (determineLang($notes)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> style='width: 100%;overflow:auto'><?php echo $notes;?></textarea>
+			<textarea name="notes" scrolling=no rows='6' cols='40' wrap='soft' dir=<?php echo (determineLang($notes)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> style='width: 100%;overflow:auto'><?php echo get_php_string($notes);?></textarea>
 		</td>
 		<td align=right>הערות</td>
 	</tr>

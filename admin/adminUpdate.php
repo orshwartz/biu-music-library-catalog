@@ -718,7 +718,7 @@ if (!isset($mode)) {
 		</tr>
         <tr>
 			<td align=center>
-				<textarea name="notes" dir=ltr scrolling=no rows='6' cols='40' wrap='soft' style='width: 100%;overflow:auto'><?php echo $notes ;/*new_mysql_result($result,0, "notes");*/?></textarea>
+				<textarea name="notes" dir=ltr scrolling=no rows='6' cols='40' wrap='soft' style='width: 100%;overflow:auto'><?php echo $notes;?></textarea>
 			</td>
 			<td align=right>הערות</td>
 		</tr>
