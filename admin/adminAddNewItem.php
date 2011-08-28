@@ -163,15 +163,32 @@ if (($action == "additem")) {
 	$subject3 = process_data(&$_GET['subject3']);
 
 	// check if this item exists in database
-    $qry = "select item_no from records where item_no=\"" . $item_no . "\"" ;
+    $qry = "select item_no,composition_title from records where item_no=\"" . $item_no . "\"" ;
 
 	// this item number already exists and user didn't confirm yet
 	// confirm if he wants to add new piece under the existing item number.
     if (($result = mysql_query($qry)) != false) {
         if (mysql_num_rows ($result) > 0) {
-            $confirm = &$_GET['confirm'];
+
+        	$warn_msg_of_dup = "קיים פריט בעל מספר הפריט הזה.\\n";
+        	
+        	// Check if composition title exists already with the above
+        	// item number - if so, add warning
+            while ($row = mysql_fetch_array($result)) {
+		        if (strcmp($row["composition_title"],$composition_title) == 0) {
+		        	
+		        	$warn_msg_of_dup = "$warn_msg_of_dup\\n***בפריט קיים כותר עם אותו שם!***\\n";
+		        	
+		        	break;
+		        } 
+		    }
+		    
+		    $warn_msg_of_dup = "$warn_msg_of_dup\\nלהמשיך?";
+        	
+        	
+        	$confirm = &$_GET['confirm'];
             if (! isset($confirm))
-                echo "<script>if (confirm(\"קיים פריט בעל מספר הפריט הזה. להמשיך?\")) " . "document.location.href=\"adminAddNewItem.php\"+document.location.search+\"&confirm=true\" ;" . " else " . "document.location.href=\"adminAddNewItem.php\"+document.location.search+\"&confirm=false\" ;" . "</script>" ;
+                echo "<script>if (confirm(\"$warn_msg_of_dup\")) " . "document.location.href=\"adminAddNewItem.php\"+document.location.search+\"&confirm=true\" ;" . " else " . "document.location.href=\"adminAddNewItem.php\"+document.location.search+\"&confirm=false\" ;" . "</script>" ;
         }
 
 		// insert item to database
