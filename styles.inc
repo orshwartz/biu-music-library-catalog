@@ -11,6 +11,11 @@
 .smallTitle{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';color:#234567;font-size:12px;}
 .recordTitle{font-family: ' arial (hebrew) ,web hebrew ad, Courier New (Hebrew)';;font-size:16px;}
 
+.subtleText {
+	color: #A0A0B0;
+	font: 8pt Arial;
+}
+
 body {
   background-color: #B2D3F0;
 }

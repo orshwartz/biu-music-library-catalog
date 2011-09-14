@@ -121,6 +121,8 @@ $msg = "";
 $action = &$_GET['action'];
 $fromID = &$_GET['fromID'] ;
 
+$displayUpdateLink = false;
+
 // action = newitem when we reach an empty table (for example, using the
 // navigation bar button.
 // action = additem after the table is full.
@@ -218,12 +220,28 @@ if (($action == "additem")) {
     $resultSet = mysql_query($qry);
 
     if ($resultSet != false) {
-        // get the id of the item we have just inserted
+
+    	// get the id of the item we have just inserted
         $fromID = new_mysql_result($resultSet, 0, "mid");
+
         // set the action for the upcoming item display (the display of the item we have just inserted)
+        // (Or's comment: We're inside an "If" statement guarenteeing action=additem, so
+        // the following statement seems pointless) 
         $action = (($action == "copyitem") ? "displayitem" : "newitem") ;
     } else
         setSessionMessageDatabaseError() ;
+}
+
+// Else, if we're copying an item
+else if ($action == "copyitem") {
+	
+	// Enable display of link for item update (in case we're
+	// looking at the data from the copied item and see there's a
+	// mistake which we want to fix on the item we copied from)
+	$displayUpdateLink = true;
+
+	// Define the link for updating the original item details
+	$updateLink = "adminUpdate.php?id=$fromID&copied_data_fix_mode=true&action=1&display=heb&mode=update";
 }
 
 $showmsg = &$_GET['showmsg'];
@@ -359,8 +377,15 @@ if ($showmsg)
 
 ?>
 
-
-
+<?php
+// If an update link for the original copied item should be displayed
+if ($displayUpdateLink) {
+	
+	echo "<div class='subtleText' align=center>";
+	echo "<a href=$updateLink>טעות בנתוני המקור? לחץ/לחצי לעדכונו</a>";
+	echo "</div>";
+}
+?>
 
 <!-- creates the add new item/copy item table -->
 <!-- table fields. When clicking on the index button, openModal() is called. -->
