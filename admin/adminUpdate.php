@@ -133,7 +133,6 @@ $mode = &$_GET['mode'];
 $id = &$_GET['id'];
 $item_no = &$_GET['item_no'];
 $showmsg = &$_GET['showmsg'];
-$copied_data_fix_mode = &$_GET['copied_data_fix_mode'];
 
 if ($showmsg)
     displaySessionMsg() ;
@@ -278,19 +277,9 @@ if (!isset($mode)) {
     if ($num_rows != 0)
         $item_no = new_mysql_result($resultSet, 0, "item_no");
 
-    // If we came to this update page from the copying page in order to fix
-    // the original data
-    if (isset($copied_data_fix_mode) && ($copied_data_fix_mode==true)) {
-
-    	// Return to copy page of the item we fixed
-    	echo "<script>alert(\"הפריט עודכן בהצלחה - חוזר להעתקת הפריט\");</script>";
-    	echo "<script>document.location='adminAddNewItem.php?fromID=$id&display=heb&item_no=$item_no&confirm=false&action=copyitem'</script>\n";
-    }
-    else {
-    	
-		// and return to results page with showing the item records.
-	    echo "<script>document.location='adminResults.php?item_no=$item_no&action=$action&mode=$mode&display=$display&showmsg=1'</script>\n";
-    }
+	// and return to results page with showing the item records.
+    echo "<script>document.location='adminResults.php?item_no=$item_no&action=$action&mode=$mode&display=$display&showmsg=1'</script>\n";
+    
 } else if (isset($mode) && (($mode == "update") || ($mode == "updateItem"))) {
 	// update piece or item, before user confirmation - means we should
 	// display the values in table and let him change and confirm.

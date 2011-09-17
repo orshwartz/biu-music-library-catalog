@@ -137,7 +137,7 @@ if (($action == "additem")) {
 	$media_id = &$_GET['media_id'];
 	$composer = process_data(&$_GET['composer']);
 	$composer2 = process_data(&$_GET['composer2']); // hebrew composer
-	$item_no = &$_GET['item_no'];
+	$item_no = process_data(&$_GET['item_no']);
 	$second_author = process_data(&$_GET['second_author']);
 	$series = process_data(&$_GET['series']);
 	$composition_formal_name = process_data(&$_GET['composition_formal_name']);
@@ -240,8 +240,11 @@ else if ($action == "copyitem") {
 	// mistake which we want to fix on the item we copied from)
 	$displayUpdateLink = true;
 
+	// Get item number for update link
+	$item_no = process_data(&$_GET['item_no']);
+	
 	// Define the link for updating the original item details
-	$updateLink = "adminUpdate.php?id=$fromID&copied_data_fix_mode=true&action=1&display=heb&mode=update";
+	$updateLink = "adminResults.php?mode=update&action=1&display=heb&item_no=$item_no";
 }
 
 $showmsg = &$_GET['showmsg'];
@@ -382,7 +385,7 @@ if ($showmsg)
 if ($displayUpdateLink) {
 	
 	echo "<div class='subtleText' align=center>";
-	echo "<a href=$updateLink>טעות בנתוני המקור? לחץ/לחצי לעדכונו</a>";
+	echo "<a href=$updateLink target=\"_blank\">טעות בנתוני המקור? לחץ/לחצי לעדכונו</a>";
 	echo "</div>";
 }
 ?>
