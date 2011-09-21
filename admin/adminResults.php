@@ -161,14 +161,14 @@ if (isset($action)) {
      // put the results in an array (cause SQL has some weird problems when sorting)
     $result = mysql_query($runQuery) ;
     $num_rows = mysql_num_rows($result);
-
+    
     class res {
         var $composer; //First variable: Used for sorting
         var $composition_title;
         var $media_id;
         var $id;
     }
-
+    
     $resultArr = array();
     $j = 0;
     while ($row = mysql_fetch_array($result)) {
@@ -177,9 +177,14 @@ if (isset($action)) {
         $resultArr[$j]->composer = $row["composer"];
         $resultArr[$j]->composition_title = $row["composition_title"];
         $resultArr[$j]->media_id = $row["media_id"];
+        
+    	// Get formal name of item (for displaying on page)
+		$item_second_title = $row["item_second_title"];
+        
         $j++;
     }
     sort($resultArr);
+    
     // ////////////////////////// Paging Links generation /////////////////////////////////////////////////////////
     // Calculations based on currnet page and page size, to create links
     // for paging (Next page/ Previous page)
@@ -236,7 +241,7 @@ if (isset($action)) {
            <td align=center class='menuTitle'><b>" . $lang_terms['searchResults'][$lang] . "</b><BR><BR></td>
         </tr>
         <tr>
-           <td align=center class='normalTitle'><b><font color=#2778C3>" . str_replace("<num>", $num_rows, $lang_terms['resultsFound'][$lang]) . "</font></b></td>
+           <td dir=rtl align=center class='normalTitle'><b><font color=#2778C3>" . str_replace("<num>", $num_rows, $lang_terms['resultsFound'][$lang]) . " עבור <I>" . (($item_second_title=="")?"": $item_second_title . " </I>שמספרו <I>") . $item_no . "</I></font></b></td>
         </tr>";
 
     if ($num_rows > 0) {
