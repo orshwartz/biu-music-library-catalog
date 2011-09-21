@@ -694,7 +694,7 @@ if (!isset($mode)) {
 		</tr>
 		<tr>
 	    	<td align=center>
-				<input type=text name="publisher" dir=ltr value="<?php echo get_php_string($publisher);?>">
+				<input type=text name="publisher" dir=<?php echo (determineLang($publisher)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($publisher);?>">
 	    	</td>
 	    	<td align=right>
 		  		<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -709,25 +709,25 @@ if (!isset($mode)) {
         </tr>
 		<tr>
 			<td align=center>
-				<input type=text name="publisher_place" dir=ltr value="<?php echo get_php_string($publisher_place);?>">
+				<input type=text name="publisher_place" dir=<?php echo (determineLang($publisher_place)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($publisher_place);?>">
 			</td>
 			<td align=right>מקום הוצאה לאור</td>
 		</tr>
 		<tr>
 			<td align=center>
-				<input type=text name="year" dir=ltr value="<?php echo get_php_string($year);?>">
+				<input type=text name="year" dir=rtl value="<?php echo get_php_string($year);?>">
 			</td>
 			<td align=right>שנה </td>
 		</tr>
         <tr>
 			<td align=center>
-				<textarea name="notes" dir=ltr scrolling=no rows='6' cols='40' wrap='soft' style='width: 100%;overflow:auto'><?php echo $notes;?></textarea>
+				<textarea name="notes" dir=<?php echo (determineLang($notes)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> scrolling=no rows='6' cols='40' wrap='soft' style='width: 100%;overflow:auto'><?php echo $notes;?></textarea>
 			</td>
 			<td align=right>הערות</td>
 		</tr>
 		<tr>
 			<td align=center>
-				<input type=text name="series" dir=ltr value="<?php echo get_php_string($series);?>">
+				<input type=text name="series" dir=<?php echo (determineLang($series)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($series);?>">
 			</td>
 			<td align=right>
 				<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -742,13 +742,13 @@ if (!isset($mode)) {
 		</tr>
         <tr>
 			<td align=center>
-            	<input type=text name="item_second_title" dir=ltr value="<?php echo get_php_string($item_second_title);?>">
+            	<input type=text name="item_second_title" dir=<?php echo (determineLang($item_second_title)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($item_second_title);?>">
             </td>
 		    <td align=right>כותר פריט</td>
         </tr>
 		<tr>
 			<td align=center>
-				<input type=text name="collection" dir=ltr value = "<?php echo get_php_string($collection);?>" >
+				<input type=text name="collection" dir=<?php echo (determineLang($collection)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value = "<?php echo get_php_string($collection);?>" >
 			</td>
 			<td align=right>
 				<table border=0 bordercolor=black align=center width=100% class="dataTable">
