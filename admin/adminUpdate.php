@@ -237,7 +237,7 @@ if (!isset($mode)) {
         setSessionMessageDatabaseError() ;
     
 
-    echo "<script>document.location='adminResults.php?item_no=$item_no&action=$action&mode=$mode&display=$display&showmsg=1'</script>";
+    echo "<script>document.location='adminResults.php?item_no=$item_no&action=$action&mode=update&display=$display&showmsg=1'</script>";
 } else if (isset($mode) && ($mode == "update") && (isset($confirm)) && ($confirm == "true")) {
 	// update one piece (clicked link in results screen)
 	// after user confirmation
