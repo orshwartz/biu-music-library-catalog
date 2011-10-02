@@ -1,5 +1,8 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <!-- This file displays the simple search table -->
 <?php
+session_start();
+
 // general functions
 include_once('func.php');
 // database definitions
@@ -12,13 +15,31 @@ include_once('searchNavBar.php');
 
 <html>
 <head>
+<script type="text/javascript" src="autoComplete/js/jquery-1.6.4.js"></script>
+<script type='text/javascript' src="autoComplete/js/jquery.autocomplete.js"></script>
+<link rel="stylesheet" type="text/css" href="autoComplete/js/jquery.autocomplete.css" />
 <link rel="icon" href="images/DataSearch.ico" type="image/x-icon">
 <link rel="shortcut icon" href="images/DataSearch.ico" type="image/x-icon">
 	<title>מערכת חיפוש נתונים</title>
       <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1255">
 
-      <script>
-              function openModal(code){
+      <script type="text/javascript">
+
+$().ready(function() {
+	$("#composition_title").autocomplete("autoComplete/populate_autoComplete.php", {
+		width: 260,
+		matchContains: true,
+		//mustMatch: true,
+		//minChars: 0,
+		//multiple: true,
+		//highlight: false,
+		//multipleSeparator: ",",
+		scroll: true,
+		selectFirst: false
+	});
+});
+
+      		function openModal(code){
                  // opens a generic dialog with a list of requested group
 				 // (Composers, Soloist,Performance group, Orchestra, Conductor or Subject)
                  var val = window.open("indexWin.php?lang=heb&let=א&code="+code ,"modalDialog","height=500,width=350,status=no,scrollbars=yes,help=no,center=yes");
@@ -29,7 +50,7 @@ include_once('searchNavBar.php');
 <!-- places the focus on the first field in the form -->
 <body onLoad="placeFocus(5);">
 
-<form action="results.php" method=GET name="searchForm">
+<form action="results.php" method=GET name="searchForm" autocomplete="off">
 <!-- determines the display language -->
 <input name="display" type="hidden" value="heb">
 
@@ -71,7 +92,7 @@ include_once('searchNavBar.php');
     </tr>
 	<tr>
 		<td align=center>
-			<input type=text name="composition_title" dir=rtl>
+			<input type=text name="composition_title" id="composition_title" dir=rtl>
 		</td>
 		<td align=right>(כותר (יצירה, שיר</td>
 	</tr>
