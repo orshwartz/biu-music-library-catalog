@@ -27,9 +27,11 @@ include_once('searchNavBar.php');
 
 			$().ready(function() {
 
-				const AUTOCOMP_MIN_CHARS = 3;
-				const autoComp_regular_fields = ["composition_title"];
-				
+				var AUTOCOMP_MIN_CHARS = 1;
+
+				// Deal with general regular fields for autocompletion
+				var autoComp_regular_fields =
+					["composition_title"];
 				for (var cur_field_idx in autoComp_regular_fields) {
 					var cur_field = autoComp_regular_fields[cur_field_idx];
 					$("#"+cur_field).autocomplete("autoComplete/populate_autoComplete.php?field="+cur_field, {
@@ -40,7 +42,8 @@ include_once('searchNavBar.php');
 						selectFirst: false
 					});
 				}
-			
+
+				// Deal with fields requiring special autocompletion treatment
 				$("#composer").autocomplete("autoComplete/populate_composer_autoComplete.php", {
 					width: 260,
 					matchContains: true,
