@@ -25,19 +25,30 @@ include_once('searchNavBar.php');
 
       <script type="text/javascript">
 
-$().ready(function() {
-	$("#composition_title").autocomplete("autoComplete/populate_autoComplete.php", {
-		width: 260,
-		matchContains: true,
-		//mustMatch: true,
-		//minChars: 0,
-		//multiple: true,
-		//highlight: false,
-		//multipleSeparator: ",",
-		scroll: true,
-		selectFirst: false
-	});
-});
+			$().ready(function() {
+
+				const AUTOCOMP_MIN_CHARS = 3;
+				const autoComp_regular_fields = ["composition_title"];
+				
+				for (var cur_field_idx in autoComp_regular_fields) {
+					var cur_field = autoComp_regular_fields[cur_field_idx];
+					$("#"+cur_field).autocomplete("autoComplete/populate_autoComplete.php?field="+cur_field, {
+						width: 260,
+						matchContains: true,
+						minChars: AUTOCOMP_MIN_CHARS,
+						scroll: true,
+						selectFirst: false
+					});
+				}
+			
+				$("#composer").autocomplete("autoComplete/populate_composer_autoComplete.php", {
+					width: 260,
+					matchContains: true,
+					minChars: AUTOCOMP_MIN_CHARS,
+					scroll: true,
+					selectFirst: false
+				});
+			});
 
       		function openModal(code){
                  // opens a generic dialog with a list of requested group
@@ -75,7 +86,7 @@ $().ready(function() {
 
     <tr>
 		<td align=center>
-			<input type=text name="composer" dir=rtl>
+			<input type=text name="composer" id="composer" dir=rtl>
 		</td>
 		<td align=right>
 	        <table border=0 bordercolor=black align=center width=100% class="dataTable">
