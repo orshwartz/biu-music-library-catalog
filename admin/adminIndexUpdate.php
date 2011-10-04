@@ -731,9 +731,6 @@ if (isset($action) && ($action == "update"))
 <br>
 <center>
 <hr width=500>
-<br><br>
-<!-- back and forward navigation arrows -->
-<a href="javascript:history.forward();"><img src="../images/forward_arrow_ani.gif" alt="לעמוד הבא" border=0></a><img src="../images/blank.gif"><a href="javascript:history.back();"><img src="../images/back_arrow_ani.gif" alt="לעמוד הקודם" border=0></a>
 </center>
 
 </body>
