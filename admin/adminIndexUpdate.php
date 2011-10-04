@@ -58,7 +58,7 @@ function confirmOverwrite($index_type_name, $value)
 			<?php $confirmed = true ;?>
 	</script>
 
-	<?
+	<?php
 	echo $confirmed;
 	return $confirmed;
 }
