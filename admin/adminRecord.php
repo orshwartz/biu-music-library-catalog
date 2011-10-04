@@ -68,9 +68,9 @@ echo "<table>
 	 fetch the data from the result we got from database earlier
 	 at adminResults.php .
 -->
-<table border=1 bordercolor=black align=center class='dataTable' dir=<? echo $direction ; ?>>
-	<tr dir=<?echo $direction ; ?>>
-		<td align= <? echo $align ; ?>><b><? echo $lang_terms['media'][$lang] ; ?></b></td>
+<table border=1 bordercolor=black align=center class='dataTable' dir=<?php echo $direction ; ?>>
+	<tr dir=<?php echo $direction ; ?>>
+		<td align= <?php echo $align ; ?>><b><?php echo $lang_terms['media'][$lang] ; ?></b></td>
 			<?php
 	        echo "<td dir=" . $direction . ">";
 
@@ -89,7 +89,7 @@ echo "<table>
 
     <?php if(( $item_no = new_mysql_result($result,0, "item_no")) != ""){?>
 	<tr>
-		<td align=<? echo $align ; ?>><b><? echo $lang_terms['itemNo'][$lang] ; ?></b></td>
+		<td align=<?php echo $align ; ?>><b><?php echo $lang_terms['itemNo'][$lang] ; ?></b></td>
 		 	<?php
 			// Item's number is created as link.
 			// Clicking this link, runs the search for all items that have exactly the same item number.
@@ -99,98 +99,98 @@ echo "<table>
 			 ?>
 		</td>
 	</tr>
-	<?}?>
+	<?php }?>
 
 	<?php if(( $composer = new_mysql_result($result,0, "composer")) != ""){?>
 	<tr>
-		<td align=<?php echo $align; ?>><b><?echo $lang_terms['composerInEnglish'][$lang]; ?>&nbsp;</b></td>
+		<td align=<?php echo $align; ?>><b><?php echo $lang_terms['composerInEnglish'][$lang]; ?>&nbsp;</b></td>
         	<?php
 			echo "<td dir=" . $direction . ">";
 			echo $composer;
 			?>
 		</td>
 	</tr>
-	<?}?>
+	<?php }?>
 
 	<?php if(( $hebrew_composer = new_mysql_result($result,0, "hebrew_composer")) != ""){?>
 	<tr>
-		<td align=<? echo $align; ?>><b><? echo $lang_terms['composerInHebrew'][$lang] ; ?></b></td>
+		<td align=<?php echo $align; ?>><b><?php echo $lang_terms['composerInHebrew'][$lang] ; ?></b></td>
 	   		<?php
 			echo "<td dir=" . $direction . ">";
 			echo $hebrew_composer;
 			?>
 		</td>
 	</tr>
-	<?}?>
+	<?php }?>
 
 	<?php if(( $composition_formal_name = new_mysql_result($result,0, "composition_formal_name")) != ""){?>
 	<tr>
-		<td align=<? echo $align ; ?> > <b><? echo $lang_terms['compositionFormalName'][$lang] ; ?></b></td>
+		<td align=<?php echo $align ; ?> > <b><?php echo $lang_terms['compositionFormalName'][$lang] ; ?></b></td>
 			<?php
 			echo "<td dir=" . $direction . ">";
 			echo  $composition_formal_name ;
 			?>&nbsp;
 		</td>
 	</tr>
-	<?}?>
+	<?php }?>
 
-	<? if(( $composition_title = new_mysql_result($result,0, "composition_title")) != ""){?>
+	<?php if(( $composition_title = new_mysql_result($result,0, "composition_title")) != ""){?>
 	<tr>
-		<td align=<? echo $align ; ?> ><b><? echo $lang_terms['title'][$lang] ; ?></b></td>
+		<td align=<?php echo $align ; ?> ><b><?php echo $lang_terms['title'][$lang] ; ?></b></td>
 			<?php
 			echo "<td dir=" . $direction . ">";
 			echo $composition_title;
 			?>&nbsp;
 		</td>
 	</tr>
-	<?}?>
+	<?php }?>
 
-	<? if(( $publisher = new_mysql_result($result,0, "publisher")) != ""){?>
+	<?php if(( $publisher = new_mysql_result($result,0, "publisher")) != ""){?>
 	<tr>
-		<td align=<? echo $align ; ?> ><b><? echo $lang_terms['publisher'][$lang] ; ?></b></td>
+		<td align=<?php echo $align ; ?> ><b><?php echo $lang_terms['publisher'][$lang] ; ?></b></td>
 			<?php
 			 echo "<td dir=" . $direction . ">";
 			 echo $publisher;
 			?>&nbsp;
 		</td>
 	</tr>
-	<? } ?>
+	<?php } ?>
 
-	<?  if(( $publisher_place = new_mysql_result($result,0, "publisher_place")) != ""){?>
+	<?php  if(( $publisher_place = new_mysql_result($result,0, "publisher_place")) != ""){?>
 	<tr>
-		<td align=<? echo $align ; ?> ><b><? echo $lang_terms['publishLocation'][$lang] ; ?></b></td>
+		<td align=<?php echo $align ; ?> ><b><?php echo $lang_terms['publishLocation'][$lang] ; ?></b></td>
 			<?php
 			echo "<td dir=" . $direction . ">";
 			echo  $publisher_place;
 			?>&nbsp;
 		</td>
 	</tr>
-	<?}?>
+	<?php }?>
 
-	<? if(($year = new_mysql_result($result,0, "year")) != ""){?>
+	<?php if(($year = new_mysql_result($result,0, "year")) != ""){?>
 	<tr>
-		<td align=<? echo $align ; ?> ><b><? echo $lang_terms['year'][$lang] ; ?></b></td>
+		<td align=<?php echo $align ; ?> ><b><?php echo $lang_terms['year'][$lang] ; ?></b></td>
 			<?php
 			echo "<td dir=" . $direction . ">";
 			echo $year ;
 			?>&nbsp;
 		</td>
 	</tr>
-	<?}?>
+	<?php }?>
 
 	<?php if( ( $solist = new_mysql_result($result,0, "solist")) != ""){?>
-		<tr dir=<? echo $direction ; ?>>
-			<td align=<? echo $align ; ?> ><b><? echo $lang_terms['solist'][$lang] ; ?></b></td>
+		<tr dir=<?php echo $direction ; ?>>
+			<td align=<?php echo $align ; ?> ><b><?php echo $lang_terms['solist'][$lang] ; ?></b></td>
 				<?php
 			  	echo "<td dir=" . $direction . ">";
 				echo  $solist; ?>&nbsp;
 			</td>
 		</tr>
-	<? } ?>
+	<?php } ?>
 
 	<?php if( ( $solist2 = new_mysql_result($result,0, "solist2")) != ""){?>
 	<tr>
-		<td align=<? echo $align ; ?> dir=<?echo $lang_directions[$lang]; ?>><b><? echo $lang_terms['solist'][$lang] . " 2" ; ?></b></td>
+		<td align=<?php echo $align ; ?> dir=<?php echo $lang_directions[$lang]; ?>><b><?php echo $lang_terms['solist'][$lang] . " 2" ; ?></b></td>
 			<?php
 			echo "<td dir=" . $direction . ">";
 			echo $solist2 ; ?>&nbsp;
@@ -200,7 +200,7 @@ echo "<table>
 
 	<?php if(( $solist3 = new_mysql_result($result,0, "solist3")) != ""){?>
 	<tr>
-		<td align=<? echo $align ; ?> dir=<?echo $lang_directions[$lang]; ?>><b><? echo $lang_terms['solist'][$lang] . " 3" ; ?></b></td>
+		<td align=<?php echo $align ; ?> dir=<?php echo $lang_directions[$lang]; ?>><b><?php echo $lang_terms['solist'][$lang] . " 3" ; ?></b></td>
 			<?php
 			 echo "<td dir=" . $direction . ">";
 			 echo $solist3; ?>&nbsp;
@@ -210,7 +210,7 @@ echo "<table>
 
 	<?php if( ($performance_group = new_mysql_result($result,0, "performance_group")) != ""){?>
 	<tr>
-		<td align=<? echo $align ; ?> ><b><? echo $lang_terms['performanceGroup'][$lang] ; ?></b></td>
+		<td align=<?php echo $align ; ?> ><b><?php echo $lang_terms['performanceGroup'][$lang] ; ?></b></td>
 			<?php
 			echo "<td dir=" . $direction . ">";
 			echo $performance_group; ?>&nbsp;
@@ -220,7 +220,7 @@ echo "<table>
 
 	<?php if(($perfomance_group2 = new_mysql_result($result,0, "performance_group2")) != ""){?>
 	<tr>
-		<td align=<? echo $align ; ?> dir=<?echo $direction; ?>><b><? echo $lang_terms['performanceGroup'][$lang] . " 2" ; ?></b></td>
+		<td align=<?php echo $align ; ?> dir=<?php echo $direction; ?>><b><?php echo $lang_terms['performanceGroup'][$lang] . " 2" ; ?></b></td>
 			<?php
 			echo "<td dir=" . $direction . ">";
 			echo $perfomance_group2; ?>&nbsp;
@@ -230,7 +230,7 @@ echo "<table>
 
   	<?php if(($perfomance_group3 = new_mysql_result($result,0, "performance_group3")) != ""){?>
 	<tr>
-		<td align=<? echo $align ; ?> dir=<? echo $lang_directions[$lang]; ?>><b><? echo $lang_terms['performanceGroup'][$lang] . " 3" ; ?></b></td>
+		<td align=<?php echo $align ; ?> dir=<?php echo $lang_directions[$lang]; ?>><b><?php echo $lang_terms['performanceGroup'][$lang] . " 3" ; ?></b></td>
 			<?php
 			echo "<td dir=" . $direction . ">";
 			echo $perfomance_group3; ?>&nbsp;
@@ -240,7 +240,7 @@ echo "<table>
 
 	<?php if( ($orchestra =new_mysql_result($result,0, "orchestra")) != ""){?>
 	<tr>
-		<td align=<? echo $align; ?>><b><? echo $lang_terms['orchestra'][$lang] ; ?></b></td>
+		<td align=<?php echo $align; ?>><b><?php echo $lang_terms['orchestra'][$lang] ; ?></b></td>
 			<?php
 			 echo "<td dir=" . $direction . ">";
 			 echo $orchestra; ?>&nbsp;
@@ -250,7 +250,7 @@ echo "<table>
 
 	<?php if( ($orchestra2 = new_mysql_result($result,0, "orchestra2")) != ""){?>
 	<tr>
-		<td align=<? echo $align; ?> dir=<?echo $direction; ?>><b><? echo $lang_terms['orchestra'][$lang] . " 2" ; ?></b></td>
+		<td align=<?php echo $align; ?> dir=<?php echo $direction; ?>><b><?php echo $lang_terms['orchestra'][$lang] . " 2" ; ?></b></td>
 			<?php
 			echo "<td dir=" . $direction . ">";
 			echo $orchestra2; ?>&nbsp;
@@ -260,7 +260,7 @@ echo "<table>
 
 	<?php if(( $orchestra3 = new_mysql_result($result,0, "orchestra3")) != ""){?>
 	<tr>
-		<td align=<?echo $align ; ?> dir=<?echo $direction ; ?>><b><? echo $lang_terms['orchestra'][$lang] . " 3" ;?></b></td>
+		<td align=<?php echo $align ; ?> dir=<?php echo $direction ; ?>><b><?php echo $lang_terms['orchestra'][$lang] . " 3" ;?></b></td>
 			<?php
 			echo "<td dir=" . $direction . ">";
 			echo $orchestra3; ?>&nbsp;
@@ -268,20 +268,20 @@ echo "<table>
 	</tr>
 	<?php } ?>
 
- 	<? if(( $conductor = new_mysql_result($result,0, "conductor")) != ""){?>
+ 	<?php if(( $conductor = new_mysql_result($result,0, "conductor")) != ""){?>
 	<tr>
-		<td align=<? echo $align; ?>> <b><? echo $lang_terms['conductor'][$lang] ; ?></b></td>
+		<td align=<?php echo $align; ?>> <b><?php echo $lang_terms['conductor'][$lang] ; ?></b></td>
 			<?php
 			echo "<td dir=" . $direction . ">";
 			echo $conductor;
 			?>&nbsp;
 		</td>
 	</tr>
-	<?}?>
+	<?php }?>
 
   	<?php if(( $conductor2 = new_mysql_result($result,0, "conductor2")) != ""){?>
 	<tr>
-		<td align=<? echo $align; ?> dir=<? echo $direction; ?>><b><? echo $lang_terms['conductor'][$lang] . " 2" ;?></b></td>
+		<td align=<?php echo $align; ?> dir=<?php echo $direction; ?>><b><?php echo $lang_terms['conductor'][$lang] . " 2" ;?></b></td>
 			<?php
 			echo "<td dir=" . $direction . ">";
 			echo $conductor2;
@@ -292,7 +292,7 @@ echo "<table>
 
 	<?php if(( $conductor3 = new_mysql_result($result,0, "conductor3")) != ""){?>
 	<tr>
-		<td align=<? echo $align; ?> dir=<? echo $direction; ?>><b><? echo $lang_terms['conductor'][$lang] . " 3" ;?></b></td>
+		<td align=<?php echo $align; ?> dir=<?php echo $direction; ?>><b><?php echo $lang_terms['conductor'][$lang] . " 3" ;?></b></td>
 			<?php
 			 echo "<td dir=" . $direction . ">";
 			 echo $conductor3;
@@ -303,7 +303,7 @@ echo "<table>
 
 	<?php if(( $notes = new_mysql_result($result,0, "notes")) != ""){ $notes = restoreEOL($notes); ?>
 	<tr>
-		<td align=<? echo $align ; ?>><b><? echo $lang_terms['notes'][$lang] ; ?></b></td>
+		<td align=<?php echo $align ; ?>><b><?php echo $lang_terms['notes'][$lang] ; ?></b></td>
 			<?php
 			 	echo "<td dir=" . $direction . ">";
 			?>
@@ -311,32 +311,32 @@ echo "<table>
 			<textarea scrolling=no rows='6' cols='40' wrap='soft' style='width: 100%;overflow:auto' readonly><?php echo $notes; ?></textarea>
 		</td>
 	</tr>
-	<?}?>
+	<?php }?>
 
 	<?php if(( $series =new_mysql_result($result,0, "series")) != ""){?>
 	<tr>
-		<td align=<?echo $align ; ?>><b><? echo $lang_terms['series'][$lang] ; ?></b></td>
+		<td align=<?php echo $align ; ?>><b><?php echo $lang_terms['series'][$lang] ; ?></b></td>
 			<?php
 			echo "<td dir=" . $direction . ">";
 			echo $series;
 			?>&nbsp;
 		</td>
 	</tr>
-	<?}?>
+	<?php }?>
 
 	<?php if(( $subject = new_mysql_result($result,0, "subject")) != ""){?>
 	<tr>
-		<td align=<? echo $align ; ?>><b><? echo $lang_terms['subject'][$lang] ; ?></b></td>
+		<td align=<?php echo $align ; ?>><b><?php echo $lang_terms['subject'][$lang] ; ?></b></td>
 			<?php
 			echo "<td dir=" . $direction . ">";
 			echo $subject; ?>&nbsp;
 		</td>
 	</tr>
-	<?}?>
+	<?php }?>
 
 	<?php if(( $subject2 = new_mysql_result($result,0, "subject2")) != ""){?>
 	<tr>
-		<td align=<? echo $align; ?> dir= <? echo $direction ; ?>><b><? echo $lang_terms['subject'][$lang] . " 2" ; ?></b></td>
+		<td align=<?php echo $align; ?> dir= <?php echo $direction ; ?>><b><?php echo $lang_terms['subject'][$lang] . " 2" ; ?></b></td>
 			<?php
 			echo "<td dir=" . $direction . ">";
 			echo $subject2;
@@ -347,7 +347,7 @@ echo "<table>
 
 	<?php if(( $subject3 = new_mysql_result($result,0, "subject3")) != ""){?>
 	<tr>
-		<td align=<? echo $align ; ?> dir=<?echo $direction ; ?>><b><? echo $lang_terms['subject'][$lang] . " 3" ; ?></b></td>
+		<td align=<?php echo $align ; ?> dir=<?php echo $direction ; ?>><b><?php echo $lang_terms['subject'][$lang] . " 3" ; ?></b></td>
 			<?php
 			 echo "<td dir=" . $direction . ">";
 			 echo $subject3;
@@ -358,35 +358,35 @@ echo "<table>
 
 	<?php if(( $item_second_title = new_mysql_result($result,0, "item_second_title")) != ""){?>
 	<tr>
-		<td align= <? echo $align ; ?> ><b><? echo $lang_terms['secondTitle'][$lang] ; ?></b></td>
+		<td align= <?php echo $align ; ?> ><b><?php echo $lang_terms['secondTitle'][$lang] ; ?></b></td>
 			<?php
 			echo "<td dir=" . $direction . ">";
 			echo $item_second_title;
 			?>&nbsp;
 		</td>
 	</tr>
-	<?}?>
+	<?php }?>
 
 	<?php if(( $secondAuthor = new_mysql_result($result,0, "second_author")) != ""){?>
 	<tr>
-		<td align=<? echo $align ; ?>><b><?echo $lang_terms['coAuthor'][$lang] ; ?></b></td>
+		<td align=<?php echo $align ; ?>><b><?php echo $lang_terms['coAuthor'][$lang] ; ?></b></td>
 			<?php
 			echo "<td dir=" . $direction . ">";
 			echo $secondAuthor;
 			?>&nbsp;
 		</td>
 	</tr>
-	<?}?>
+	<?php }?>
 
 	<?php if(( $collection = new_mysql_result($result,0, "collection")) != ""){?>
 	<tr>
-		<td align=<? echo $align ; ?>><b><? echo $lang_terms['collection'][$lang] ; ?></b></td>
+		<td align=<?php echo $align ; ?>><b><?php echo $lang_terms['collection'][$lang] ; ?></b></td>
 			<?php
 			echo "<td dir=" . $direction . ">";
 		    echo $collection; ?>&nbsp;
 		</td>
 	</tr>
-	<?}?>
+	<?php }?>
 </table>
 
 <center>
