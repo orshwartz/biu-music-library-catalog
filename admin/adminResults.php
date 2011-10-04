@@ -279,8 +279,7 @@ if (isset($action)) {
                 $text_dir = "rtl";
             }
             echo "<tr>";
-            $record_details_link = "..\\record.php?display=heb&id=" . $id; 
-            echo "<td align=left>&nbsp;<a href=\"$record_details_link\">" . ($i + 1) . "</a>&nbsp;</td><td align=left>" . mediaNamebyID($media_id) . "</td><td align=left>" . $composer . "</td><td align=$align_title dir=$text_dir><a href=\"$record_details_link\">" . $composition_title . "</a></td>";
+            echo "<td align=left>&nbsp;<a href=\"adminRecord.php?display=heb&mode=$mode&action=$action&id=" . $id . "\">" . ($i + 1) . "</a>&nbsp;</td><td align=left>" . mediaNamebyID($media_id) . "</td><td align=left>" . $composer . "</td><td align=$align_title dir=$text_dir><a href=\"adminRecord.php?display=heb&mode=$mode&action=$action&id=" . $id . "\">" . $composition_title . "</a></td>";
             // we got the mode varianle from searchByItem no.
             // if update, display an update link near the result.
             if (isset($mode) && $mode == "update")
