@@ -233,7 +233,7 @@ if (($action == "additem")) {
 }
 
 // Else, if we're copying an item
-else if ($action == "copyitem") {
+else if ($action == "copyitem" || $action == 2) {
 	
 	// Enable display of link for item update (in case we're
 	// looking at the data from the copied item and see there's a
