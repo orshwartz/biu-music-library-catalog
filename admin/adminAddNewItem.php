@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+echo "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">";
+
 // general functions
 include_once('../func.php');
 // database definitions
@@ -19,13 +21,17 @@ include_once('../lang.php');
 	Either used from the navigation bar, or automatically after we add a new item. -->
 <html>
 <head>
+	<script type="text/javascript" src="../autoComplete/js/jquery-1.6.4.js"></script>
+	<script type='text/javascript' src="../autoComplete/js/jquery.autocomplete.js"></script>
+	<link rel="stylesheet" type="text/css" href="../autoComplete/js/jquery.autocomplete.css" />
 	<link rel="icon" href="../images/DataInput.ico" type="image/x-icon">
 	<link rel="shortcut icon" href="../images/DataInput.ico" type="image/x-icon">
 	<title>מערכת הזנת נתונים</title>
 	<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1255">
 
-    <script>
-        function openModal(code){
+    <script language="javascript" type="text/javascript">
+    
+    	function openModal(code){
        		// opens a generic dialog with a list of requested group
 			// (Composers, Soloist,Performance group, Orchestra, Conductor or Subject)
           if (code==14) // english composer, default display is english
@@ -108,7 +114,72 @@ include_once('../lang.php');
 			}
 		}
 
-	</script>
+         $().ready(function() {
+
+				var AUTOCOMP_MIN_CHARS = 2;
+
+				// Deal with general regular fields for autocompletion
+				var autoComp_regular_fields =
+					["composition_title",
+					 "publisher",
+					 "publisher_place",
+					 "series",
+					 "collection"];
+				for (var cur_field_idx in autoComp_regular_fields) {
+					var cur_field = autoComp_regular_fields[cur_field_idx];
+					$("#"+cur_field).autocomplete("../autoComplete/populate_autoComplete.php?field="+cur_field, {
+						width: 260,
+						matchContains: true,
+						minChars: AUTOCOMP_MIN_CHARS,
+						scroll: true,
+						selectFirst: false
+					});
+				}
+
+				// Deal with general fields for which autocompletion data should be
+				// extracted from 3 enumerated fields (e.g., "solist";"solist2";"solist3")
+				var autoComp_3enum_fields =
+					["solist",
+					 "performance_group",
+					 "orchestra",
+					 "subject",
+					 "conductor"];
+				for (var cur_field_idx in autoComp_regular_fields) {
+					var cur_field = autoComp_3enum_fields[cur_field_idx];
+					$("#"+cur_field).autocomplete("../autoComplete/populate_3_enum_field_autoComplete.php?field="+cur_field, {
+						width: 260,
+						matchContains: true,
+						minChars: AUTOCOMP_MIN_CHARS,
+						scroll: true,
+						selectFirst: false
+					});
+					$("#"+cur_field+"2").autocomplete("../autoComplete/populate_3_enum_field_autoComplete.php?field="+cur_field, {
+						width: 260,
+						matchContains: true,
+						minChars: AUTOCOMP_MIN_CHARS,
+						scroll: true,
+						selectFirst: false
+					});
+					$("#"+cur_field+"3").autocomplete("../autoComplete/populate_3_enum_field_autoComplete.php?field="+cur_field, {
+						width: 260,
+						matchContains: true,
+						minChars: AUTOCOMP_MIN_CHARS,
+						scroll: true,
+						selectFirst: false
+					});
+				}
+				
+				// Second author should get composer options
+				$("#second_author").autocomplete("../autoComplete/populate_composer_autoComplete.php", {
+					width: 260,
+					matchContains: true,
+					minChars: AUTOCOMP_MIN_CHARS,
+					scroll: true,
+					selectFirst: false
+				});
+		}); 
+
+   </script>
 
 </head>
 
@@ -431,7 +502,7 @@ if ($displayUpdateLink) {
 
 	<tr>
 		<td align=center>
-			<input type=text <?php if ($action == "displayitem") echo "readonly" ?> name="composer" value="<?php echo get_php_string($composer);?>" dir=ltr>
+			<input type=text <?php if ($action == "displayitem") echo "readonly" ?> name="composer" id="composer" value="<?php echo get_php_string($composer);?>" dir=ltr>
 		</td>
 		<td align=right>
 			<?php if ($action != "displayitem")
@@ -443,7 +514,7 @@ if ($displayUpdateLink) {
 	</tr>
 	<tr>
 		<td align=center width="50%">
-			<input type=text <?php if ($action == "displayitem") echo "readonly" ?> name="composer2" value="<?php echo get_php_string($composer2);?>" dir=rtl>
+			<input type=text <?php if ($action == "displayitem") echo "readonly" ?> name="composer2" id="composer2" value="<?php echo get_php_string($composer2);?>" dir=rtl>
 		</td>
 		<td align=right>
 			<?php if ($action != "displayitem")
@@ -458,7 +529,7 @@ if ($displayUpdateLink) {
 
 	<tr>
 		<td align=center>
-			<input type=text <?php if ($action == "displayitem") echo "readonly" ?> name="composition_formal_name" value="<?php echo get_php_string($composition_formal_name);?>" dir=<?php echo (determineLang($composition_formal_name)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
+			<input type=text <?php if ($action == "displayitem") echo "readonly" ?> name="composition_formal_name" id="composition_formal_name" value="<?php echo get_php_string($composition_formal_name);?>" dir=<?php echo (determineLang($composition_formal_name)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 		</td>
 		<td align=right>
 			<?php if ($action != "displayitem")
@@ -473,14 +544,14 @@ if ($displayUpdateLink) {
 
 	<tr>
 	    <td align=center>
-			<input type=text name="composition_title" value="<?php echo get_php_string($composition_title);?>" dir=<?php echo (determineLang($composition_title)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
+			<input type=text name="composition_title" id="composition_title" value="<?php echo get_php_string($composition_title);?>" dir=<?php echo (determineLang($composition_title)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 		</td>
 		<td align=right>(כותר (יצירה, שיר</td>
 	</tr>
 
 	<tr>
 		<td align=center>
-			<input type=text name="publisher" value="<?php echo get_php_string($publisher);?>" dir=<?php echo (determineLang($publisher)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
+			<input type=text name="publisher" id="publisher" value="<?php echo get_php_string($publisher);?>" dir=<?php echo (determineLang($publisher)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 		</td>
 		<td align=right>
 			<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -496,14 +567,14 @@ if ($displayUpdateLink) {
 
 	<tr>
 		<td align=center>
-			<input type=text name="publisher_place" value="<?php echo get_php_string($publisher_place) ;?>" dir=<?php echo (determineLang($publisher_place)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
+			<input type=text name="publisher_place" id="publisher_place" value="<?php echo get_php_string($publisher_place) ;?>" dir=<?php echo (determineLang($publisher_place)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 		</td>
 		<td align=right>מקום הוצאה לאור</td>
 	</tr>
 
 	<tr>
 		<td align=center>
-        		<input type=text name="year" value="<?php echo get_php_string($year);?>" dir=ltr>
+        		<input type=text name="year" id="year" value="<?php echo get_php_string($year);?>" dir=ltr>
 		</td>
 		<td align=right>שנה </td>
 	</tr>
@@ -519,7 +590,7 @@ if ($displayUpdateLink) {
 						<table border=0 bordercolor=black class='dataTable' align=center>
 							<tr>
 								<td align=center>
-									<input type=text name="solist" value="<?php echo get_php_string($solist);?>" dir=<?php echo (determineLang($solist)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
+									<input type=text name="solist" id="solist" value="<?php echo get_php_string($solist);?>" dir=<?php echo (determineLang($solist)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -534,7 +605,7 @@ if ($displayUpdateLink) {
 							</tr>
 							<tr>
 								<td align=center>
-									<input type=text name="solist2" value="<?php echo get_php_string($solist2);?>" dir=<?php echo (determineLang($solist2)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
+									<input type=text name="solist2" id="solist2" value="<?php echo get_php_string($solist2);?>" dir=<?php echo (determineLang($solist2)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -549,7 +620,7 @@ if ($displayUpdateLink) {
 							</tr>
 							<tr>
 								<td align=center>
-									<input type=text name="solist3" value="<?php echo get_php_string($solist3);?>" dir=<?php echo (determineLang($solist3)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
+									<input type=text name="solist3" id="solist3" value="<?php echo get_php_string($solist3);?>" dir=<?php echo (determineLang($solist3)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -565,7 +636,7 @@ if ($displayUpdateLink) {
 
                              <tr>
 								<td align=center>
-									<input type=text name="performance_group" value="<?php echo get_php_string($performance_group);?>" dir=<?php echo (determineLang($performance_group)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
+									<input type=text name="performance_group" id="performance_group" value="<?php echo get_php_string($performance_group);?>" dir=<?php echo (determineLang($performance_group)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -581,7 +652,7 @@ if ($displayUpdateLink) {
 
 							<tr>
 								<td align=center>
-									<input type=text name="performance_group2" value="<?php echo get_php_string($performance_group2);?>" dir=<?php echo (determineLang($performance_group2)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
+									<input type=text name="performance_group2" id="performance_group2" value="<?php echo get_php_string($performance_group2);?>" dir=<?php echo (determineLang($performance_group2)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -597,7 +668,7 @@ if ($displayUpdateLink) {
 
 							<tr>
 								<td align=center>
-									<input type=text name="performance_group3" value="<?php echo get_php_string($performance_group3);?>" dir=<?php echo (determineLang($performance_group3)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
+									<input type=text name="performance_group3" id="performance_group3" value="<?php echo get_php_string($performance_group3);?>" dir=<?php echo (determineLang($performance_group3)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -612,7 +683,7 @@ if ($displayUpdateLink) {
 							</tr>
 							<tr>
 								<td align=center>
-									<input type=text name="orchestra" value="<?php echo get_php_string($orchestra);?>" dir=<?php echo (determineLang($orchestra)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
+									<input type=text name="orchestra" id="orchestra" value="<?php echo get_php_string($orchestra);?>" dir=<?php echo (determineLang($orchestra)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -627,7 +698,7 @@ if ($displayUpdateLink) {
 							</tr>
 							<tr>
 								<td align=center>
-									<input type=text name="orchestra2" value="<?php echo get_php_string($orchestra2);?>" dir=<?php echo (determineLang($orchestra2)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
+									<input type=text name="orchestra2" id="orchestra2" value="<?php echo get_php_string($orchestra2);?>" dir=<?php echo (determineLang($orchestra2)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -642,7 +713,7 @@ if ($displayUpdateLink) {
 							</tr>
 							<tr>
 								<td align=center>
-									<input type=text name="orchestra3" value="<?php echo get_php_string($orchestra3);?>" dir=<?php echo (determineLang($orchestra3)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
+									<input type=text name="orchestra3" id="orchestra3" value="<?php echo get_php_string($orchestra3);?>" dir=<?php echo (determineLang($orchestra3)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -657,7 +728,7 @@ if ($displayUpdateLink) {
 							</tr>
 							<tr>
 								<td align=center>
-									<input type=text name="conductor" value="<?php echo get_php_string($conductor);?>" dir=<?php echo (determineLang($conductor)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
+									<input type=text name="conductor" id="conductor" value="<?php echo get_php_string($conductor);?>" dir=<?php echo (determineLang($conductor)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -672,7 +743,7 @@ if ($displayUpdateLink) {
 							</tr>
 							<tr>
 								<td align=center>
-									<input type=text name="conductor2" value="<?php echo get_php_string($conductor2);?>" dir=<?php echo (determineLang($conductor2)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
+									<input type=text name="conductor2" id="conductor2" value="<?php echo get_php_string($conductor2);?>" dir=<?php echo (determineLang($conductor2)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -687,7 +758,7 @@ if ($displayUpdateLink) {
 							</tr>
 							<tr>
 								<td align=center>
-									<input type=text name="conductor3" value="<?php echo get_php_string($conductor3);?>"  dir=<?php echo (determineLang($conductor3)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
+									<input type=text name="conductor3" id="conductor3" value="<?php echo get_php_string($conductor3);?>"  dir=<?php echo (determineLang($conductor3)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -714,7 +785,7 @@ if ($displayUpdateLink) {
 	</tr>
 	<tr>
 		<td align=center>
-			<input type=text name="series" dir=<?php echo (determineLang($series)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($series) ;?>" >
+			<input type=text name="series" id="series" dir=<?php echo (determineLang($series)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($series) ;?>" >
 		</td>
 		<td align=right>
 			<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -729,7 +800,7 @@ if ($displayUpdateLink) {
 	</tr>
 	<tr>
 		<td align=center>
-			<input type=text name="subject" value="<?php echo get_php_string($subject);?>" dir=<?php echo (determineLang($subject)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
+			<input type=text name="subject" id="subject" value="<?php echo get_php_string($subject);?>" dir=<?php echo (determineLang($subject)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?>>
 		</td>
 		<td align=right>
 			<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -745,7 +816,7 @@ if ($displayUpdateLink) {
 
 	<tr>
 		<td align=center>
-			<input type=text name="subject2" dir=<?php echo (determineLang($subject2)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($subject2);?>">
+			<input type=text name="subject2" id="subject2" dir=<?php echo (determineLang($subject2)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($subject2);?>">
 		</td>
 		<td align=right>
 			<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -761,7 +832,7 @@ if ($displayUpdateLink) {
 
 	<tr>
 		<td align=center>
-			<input type=text name="subject3" dir=<?php echo (determineLang($subject3)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($subject3);?>">
+			<input type=text name="subject3" id="subject3" dir=<?php echo (determineLang($subject3)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($subject3);?>">
 		</td>
 		<td align=right>
 			<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -776,14 +847,14 @@ if ($displayUpdateLink) {
 	 </tr>
 	 <tr>
 		<td align=center>
-			<input type=text name="item_second_title" dir=<?php echo (determineLang($item_second_title)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($item_second_title);?>">
+			<input type=text name="item_second_title" id="item_second_title" dir=<?php echo (determineLang($item_second_title)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($item_second_title);?>">
 		 </td>
 		<td align=right>כותר פריט</td>
 	</tr>
 
 	<tr>
 		<td align=center>
-			<input type=text name="second_author" dir=<?php echo (determineLang($second_author)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($second_author);?>">
+			<input type=text name="second_author" id="second_author" dir=<?php echo (determineLang($second_author)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($second_author);?>">
 		</td>
 		<td align=right>
 			<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -799,7 +870,7 @@ if ($displayUpdateLink) {
 
 	<tr>
 		<td align=center>
-			<input type=text name="collection" dir=<?php echo (determineLang($collection)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($collection);?>">
+			<input type=text name="collection" id="collection" dir=<?php echo (determineLang($collection)=="en")?$lang_directions[$ENGLISH]:$lang_directions[$HEBREW];?> value="<?php echo get_php_string($collection);?>">
 		</td>
 		<td align=right>
 			<table border=0 bordercolor=black align=center width=100% class="dataTable">

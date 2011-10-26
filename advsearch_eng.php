@@ -1,5 +1,8 @@
-<!-- This file displays the advanced search table -->
 <?php
+session_start();
+
+echo "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">";
+
 // general functions
 include_once('func.php');
 // database definitions
@@ -9,15 +12,77 @@ include_once('styles.inc');
 // navigation bar to be displayed on top
 include_once('searchNavBar.php');
 ?>
-
+<!-- This file displays the advanced search table -->
 <html>
 <head>
+	<script type="text/javascript" src="autoComplete/js/jquery-1.6.4.js"></script>
+	<script type='text/javascript' src="autoComplete/js/jquery.autocomplete.js"></script>
+	<link rel="stylesheet" type="text/css" href="autoComplete/js/jquery.autocomplete.css" />
 	<link rel="icon" href="images/DataSearch.ico" type="image/x-icon">
 	<link rel="shortcut icon" href="images/DataSearch.ico" type="image/x-icon">
 	<title>מערכת חיפוש נתונים</title>
 	<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1255">
 
-	<script>
+        <script>
+
+		$().ready(function() {
+
+			var AUTOCOMP_MIN_CHARS = 2;
+
+			// Deal with general regular fields for autocompletion
+			var autoComp_regular_fields =
+				["publisher",
+				 "publisher_place",
+				 "series",
+				 "collection"];
+			for (var cur_field_idx in autoComp_regular_fields) {
+				var cur_field = autoComp_regular_fields[cur_field_idx];
+				$("#"+cur_field).autocomplete("autoComplete/populate_autoComplete.php?field="+cur_field, {
+					width: 260,
+					matchContains: true,
+					minChars: AUTOCOMP_MIN_CHARS,
+					scroll: true,
+					selectFirst: false
+				});
+			}
+
+			// Deal with general fields for which autocompletion data should be
+			// extracted from 3 enumerated fields (e.g., "solist";"solist2";"solist3")
+			var autoComp_3enum_fields =
+				["solist",
+				 "performance_group",
+				 "orchestra",
+				 "conductor"];
+			for (var cur_field_idx in autoComp_regular_fields) {
+				var cur_field = autoComp_3enum_fields[cur_field_idx];
+				$("#"+cur_field).autocomplete("autoComplete/populate_3_enum_field_autoComplete.php?field="+cur_field, {
+					width: 260,
+					matchContains: true,
+					minChars: AUTOCOMP_MIN_CHARS,
+					scroll: true,
+					selectFirst: false
+				});
+			}
+
+			// Deal with subject because for some odd reason the general code doesn't work for it
+			$("#subject").autocomplete("autoComplete/populate_subject_autoComplete.php", {
+				width: 260,
+				matchContains: true,
+				minChars: AUTOCOMP_MIN_CHARS,
+				scroll: true,
+				selectFirst: false
+			});
+			
+			// Deal with fields requiring special autocompletion treatment
+			$("#composer").autocomplete("autoComplete/populate_composer_autoComplete.php", {
+				width: 260,
+				matchContains: true,
+				minChars: AUTOCOMP_MIN_CHARS,
+				scroll: true,
+				selectFirst: false
+			});
+		});
+		
 		function openModal(code)
 		{
         	// opens a generic dialog with a list of requested group
@@ -75,14 +140,14 @@ include_once('searchNavBar.php');
 			</table>
 		</td>
 		<td align=center>
-			<input type=text name="composer">
+			<input type=text name="composer" id="composer">
 		</td>
     </tr>
 
 	<tr>
 		<td align=left>Title (Composition, Song) </td>
 		<td align=center>
-			<input type=text name="composition_title">
+			<input type=text name="composition_title" id="composition_title">
 		</td>
 	</tr>
 	
@@ -98,7 +163,7 @@ include_once('searchNavBar.php');
 	         </table>
 		</td>
         <td align=center>
-             <input type=text name="publisher">
+             <input type=text name="publisher" id="publisher">
         </td>
 	</tr>
 	
@@ -130,7 +195,7 @@ include_once('searchNavBar.php');
 						</td>
 
 						<td align=center>
-							<input type=text name="solist">
+							<input type=text name="solist" id="solist">
 						</td>
 					</tr>
 					<tr>
@@ -145,7 +210,7 @@ include_once('searchNavBar.php');
 							</table>
 						</td>
 						<td align=center>
-							<input type=text name="performance_group">
+							<input type=text name="performance_group" id="performance_group">
 						</td>
 					</tr>
 
@@ -161,7 +226,7 @@ include_once('searchNavBar.php');
 							</table>
 						</td>
 						<td align=center>
-							<input type=text name="orchestra">
+							<input type=text name="orchestra" id="orchestra">
 						</td>
 					</tr>
 
@@ -177,7 +242,7 @@ include_once('searchNavBar.php');
 							</table>
 						</td>
 						<td align=center>
-							<input type=text name="conductor">
+							<input type=text name="conductor" id="conductor">
 						</td>
 					</tr>
 					</table>
@@ -201,7 +266,7 @@ include_once('searchNavBar.php');
 		         </table>
 		</td>
 		<td align=center>
-		    <input type=text name="series">
+		    <input type=text name="series" id="series">
 		</td>
 	</tr>
 	
@@ -219,14 +284,14 @@ include_once('searchNavBar.php');
 		         </table>
 		</td>
 		<td align=center>
-		    <input type=text name="subject">
+		    <input type=text name="subject" id="subject">
 		</td>
 	</tr>
 
 	<tr>
 		<td align=left>Added title</td>
 		<td align=center>
-			<input type=text name="item_second_title">
+			<input type=text name="item_second_title" id="item_second_title">
 		</td>
 	</tr>
 
@@ -245,7 +310,7 @@ include_once('searchNavBar.php');
 
 		</td>
         <td align=center>
-          <input type=text name="collection">
+          <input type=text name="collection" id="collection">
         </td>
 	</tr>
 

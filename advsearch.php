@@ -30,7 +30,10 @@ include_once('searchNavBar.php');
 
 			// Deal with general regular fields for autocompletion
 			var autoComp_regular_fields =
-				["composer", "publisher", "conductor", "subject"];
+				["publisher",
+				 "publisher_place",
+				 "series",
+				 "collection"];
 			for (var cur_field_idx in autoComp_regular_fields) {
 				var cur_field = autoComp_regular_fields[cur_field_idx];
 				$("#"+cur_field).autocomplete("autoComplete/populate_autoComplete.php?field="+cur_field, {
@@ -42,6 +45,33 @@ include_once('searchNavBar.php');
 				});
 			}
 
+			// Deal with general fields for which autocompletion data should be
+			// extracted from 3 enumerated fields (e.g., "solist";"solist2";"solist3")
+			var autoComp_3enum_fields =
+				["solist",
+				 "performance_group",
+				 "orchestra",
+				 "conductor"];
+			for (var cur_field_idx in autoComp_regular_fields) {
+				var cur_field = autoComp_3enum_fields[cur_field_idx];
+				$("#"+cur_field).autocomplete("autoComplete/populate_3_enum_field_autoComplete.php?field="+cur_field, {
+					width: 260,
+					matchContains: true,
+					minChars: AUTOCOMP_MIN_CHARS,
+					scroll: true,
+					selectFirst: false
+				});
+			}
+
+			// Deal with subject because for some odd reason the general code doesn't work for it
+			$("#subject").autocomplete("autoComplete/populate_subject_autoComplete.php", {
+				width: 260,
+				matchContains: true,
+				minChars: AUTOCOMP_MIN_CHARS,
+				scroll: true,
+				selectFirst: false
+			});
+			
 			// Deal with fields requiring special autocompletion treatment
 			$("#composer").autocomplete("autoComplete/populate_composer_autoComplete.php", {
 				width: 260,
@@ -132,7 +162,7 @@ include_once('searchNavBar.php');
 
 	<tr>
 		<td align=center>
-			<input type=text name="composition_title" dir=rtl>
+			<input type=text name="composition_title" id="composition_title" dir=rtl>
 		</td>
 		<td align=right>(כותר (יצירה, שיר</td>
 	</tr>
@@ -155,7 +185,7 @@ include_once('searchNavBar.php');
 	</tr>
 	<tr>
 		<td align=center>
-			<input type=text name="year" dir=rtl>
+			<input type=text name="year" id="year" dir=rtl>
 		</td>
 		<td align=right>שנה </td>
 	</tr>
@@ -170,7 +200,7 @@ include_once('searchNavBar.php');
 						<table border=0 bordercolor=black align=center class="dataTable">
 							<tr>
 								<td align=center>
-									<input type=text name="solist" dir=rtl>
+									<input type=text name="solist" id="solist" dir=rtl>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -185,7 +215,7 @@ include_once('searchNavBar.php');
 							</tr>
                             <tr>
 								<td align=center>
-									<input type=text name="performance_group" dir=rtl>
+									<input type=text name="performance_group" id="performance_group" dir=rtl>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -200,7 +230,7 @@ include_once('searchNavBar.php');
 							</tr>
 				            <tr>
 								<td align=center>
-									<input type=text name="orchestra" dir=rtl>
+									<input type=text name="orchestra" id="orchestra" dir=rtl>
 								</td>
 								<td align=right>
 									<table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -238,7 +268,7 @@ include_once('searchNavBar.php');
 
 	<tr>
 		<td align=center>
-			<input type=text name="series" dir=rtl>
+			<input type=text name="series" id="series" dir=rtl>
 		</td>
 		<td align=right>
 	        <table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -255,7 +285,7 @@ include_once('searchNavBar.php');
 	</tr>
 	<tr>
 		<td align=center>
-			<input type=text name="subject" id="subject" dir=rtl>
+			<input type=text id="subject" name="subject" dir=rtl>
 		</td>
 		<td align=right>
 	        <table border=0 bordercolor=black align=center width=100% class="dataTable">
@@ -273,14 +303,14 @@ include_once('searchNavBar.php');
 
 	<tr>
 		<td align=center>
-			<input type=text name="item_second_title" dir=rtl>
+			<input type=text name="item_second_title" id="item_second_title" dir=rtl>
 		</td>
 		<td align=right>כותר פריט</td>
 	</tr>
 
 	<tr>
 		<td align=center>
-			<input type=text name="collection" dir=rtl>
+			<input type=text name="collection" id="collection" dir=rtl>
 		</td>
 		<td align=right>
 			<table border=0 bordercolor=black align=center width=100% class="dataTable">
