@@ -25,15 +25,39 @@ if (preg_match('/[à-ú]/',$q) > 0) {
 $rsd = mysql_query($sql);
 
 // For each result
-while($rs = mysql_fetch_array($rsd)) {
+$idx_of_not_starting_with_qry = 0;
+while ($rs = mysql_fetch_array($rsd, MYSQL_ASSOC)) {
 
 	// Retrieve received composer name variations
 	$composer = $rs[$field];
 	
 	// Change the encoding of the received text so it
-	// displays well in the options drop-down menu
-	$composer = iconv("windows-1255", "UTF-8", $composer);
+	// displays well in the options drop-down menu and prepare
+	// it for display on that menu
+	$composer_dropdown_fmt = iconv("windows-1255", "UTF-8", $composer);
+	$composer_dropdown_fmt = stripslashes($composer_dropdown_fmt)."\n";
 
-	echo stripslashes($composer)."\n";
+	// If current result begins with the query (we want the results beginning
+	// with the query to appear first on the drop-down list options)
+	if (stripos($composer, $q) === 0) {
+		
+		// Add to drop-down menu
+		echo $composer_dropdown_fmt;
+	} else {
+		
+		// Save in array for later; Used to output after the results
+		// beginning with the query
+		$results_contain_not_at_start[$idx_of_not_starting_with_qry] =
+			$composer_dropdown_fmt;
+		++$idx_of_not_starting_with_qry;
+	}
+}
+
+// For each result containing the query without beginning with the
+// query
+foreach ($results_contain_not_at_start as $cur_result)
+{
+	// Add result to drop-down menu
+	echo $cur_result;
 }
 ?>

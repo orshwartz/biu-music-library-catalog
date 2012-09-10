@@ -20,7 +20,8 @@ $sql = "$sql SELECT DISTINCT $field"."2 FROM records WHERE $field"."2 LIKE BINAR
 $sql = "$sql SELECT DISTINCT $field"."3 FROM records WHERE $field"."3 LIKE BINARY '%$q%'"; 
 $rsd = mysql_query($sql);
 
-while($rs = mysql_fetch_array($rsd)) {
+while ($rs = mysql_fetch_array($rsd, MYSQL_ASSOC)) {
+	
 	$fname = $rs[$field];
 	$fname = iconv("windows-1255", "UTF-8", $fname);
 	echo stripslashes($fname)."\n";
