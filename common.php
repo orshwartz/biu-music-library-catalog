@@ -8,7 +8,7 @@ function displayMsg ($msg, $isAlertMsg)
     if ($isAlertMsg == 1)
         echo "<script> alert (\"" . $msg . "\") ;</script>" ;
     else
-        echo "<center><b>" . $msg . "</b></center></style><br><br>" ;
+        echo "<center><b>" . $msg . "</b></center></style><br>" ;
 }
 
 // sets a session message
