@@ -192,6 +192,8 @@ $msg = "";
 $action = &$_GET['action'];
 $fromID = &$_GET['fromID'] ;
 
+$item_no = "";
+
 $displayUpdateLink = false;
 
 // action = newitem when we reach an empty table (for example, using the
@@ -297,25 +299,53 @@ if (($action == "additem")) {
 
         // set the action for the upcoming item display (the display of the item we have just inserted)
         // (Or's comment: We're inside an "If" statement guarenteeing action=additem, so
-        // the following statement seems pointless) 
+        // the following statement seems pointless because it will always set $action to "newitem") 
         $action = (($action == "copyitem") ? "displayitem" : "newitem") ;
     } else
         setSessionMessageDatabaseError() ;
 }
 
-// Else, if we're copying an item
-else if ($action == "copyitem" || $action == 2) {
-	
-	// Enable display of link for item update (in case we're
-	// looking at the data from the copied item and see there's a
-	// mistake which we want to fix on the item we copied from)
-	$displayUpdateLink = true;
+// This is how to create a javascript alert in this part of code, for debug
+//echo '<script language="javascript">';
+//echo "alert('Before if: item_no=\"$item_no\" and action=\"$action\"');";
+//echo "</script>";
 
-	// Get item number for update link
-	$item_no = process_data(&$_GET['item_no']);
+// If we're copying an item (item number already exists)
+if ($action == "copyitem" ||
+	$action == "2" ||
+	$action == "additem" ||
+	$action == "newitem") {
+
+	// If there's a non-empty item number
+	if ($item_no != "") {
+		
+		// Enable display of link for item update (in case we're
+		// looking at the data from the copied item and see there's a
+		// mistake which we want to fix on the item we copied from)
+		$displayUpdateLink = true;
+		
+		// Define the link for updating the original item details
+		$updateLink = "adminResults.php?mode=update&action=1&display=heb&item_no=$item_no";
+	}
 	
-	// Define the link for updating the original item details
-	$updateLink = "adminResults.php?mode=update&action=1&display=heb&item_no=$item_no";
+	// Else, for some reason there's no item number so attempt to get it again
+	else {
+
+		// Get item number for update link
+		$item_no = process_data(&$_GET['item_no']);
+
+		// If there's a non-empty item number
+		if ($item_no != "") {
+
+			// Enable display of link for item update (in case we're
+			// looking at the data from the copied item and see there's a
+			// mistake which we want to fix on the item we copied from)
+			$displayUpdateLink = true;
+			
+			// Define the link for updating the original item details
+			$updateLink = "adminResults.php?mode=update&action=1&display=heb&item_no=$item_no";
+		}
+	}
 }
 
 $showmsg = &$_GET['showmsg'];
