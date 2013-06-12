@@ -11,8 +11,14 @@ include_once('func.php');
 include_once('db_common.php');
 // CSS definitions
 include_once('styles.inc');
+
 // navigation bar to be displayed on top
-include_once('searchNavBar.php');
+$preview = $_GET['preview'];
+if ($preview != "true")
+{
+	include_once('searchNavBar.php');
+}
+
 // language definitions, for the display can be both in hebrew and in english
 include_once('lang.php') ;
 ?>
@@ -44,7 +50,7 @@ switch ($display) {
 
 $direction = $lang_directions[$lang] ;
 $align = $lang_aligns[$lang] ;
-$query = "select * from records where id=" . $id;
+$query = "select * from records where id=$id";
 $result = mysql_query($query) ;
 
 // Echo the data aligned according to current language and in direction
@@ -59,19 +65,21 @@ function echoFieldData($field_val) {
 	else {
 		$field_dir = $lang_directions[$HEBREW];
 	}
-    echo "<td dir=" . $field_dir . " align=" . $align . ">";
+    echo "<td dir=$field_dir align=$align>";
     echo $field_val;
 }
 
 // table title
-echo "<br><center>";
-echo "<table>
-        <tr>
-     		<td class='bigTitle' align=$align><b>{$lang_terms['fullDetails'][$lang]}</b>
-        </tr>
-      </table>
-      <br></center>";
-
+if ($preview != "true")
+{
+	echo "<br><center>";
+	echo "<table>
+	        <tr>
+	     		<td class='bigTitle' align=$align><b>{$lang_terms['fullDetails'][$lang]}</b>
+	        </tr>
+	      </table>
+	      <br></center>";
+}
 ?>
 
 <!-- create the table.
@@ -80,7 +88,7 @@ echo "<table>
 	 fetch the data from the result we got from database earlier
 	 at results.php .
 -->
-<table border=1 bordercolor=black align=center class='dataTable' dir=<?php echo $direction ;?>>
+<table id='recordDetails' border=1 bordercolor=black align=center class='dataTable' dir=<?php echo $direction ;?>>
 	<tr dir=<?php echo $direction ;?>>
 		<td align= <?php echo $align ;?>><b><?php echo $lang_terms['media'][$lang] ;?></b></td>
 			<?php

@@ -76,5 +76,31 @@ body {
 	color: #474747;
 }
 
-</style>
+iframe {
+	overflow: hidden;
+	
+	display: inline-table;
 
+/*	position: fixed; */
+
+	position:absolute;
+	z-index:100;
+
+	height: 0px;
+	width: 0px;
+   
+	border-width: 0;
+	border-style: outset;
+   
+	margin-bottom: 0cm;
+	margin-left: 0cm;
+	margin-right: 0cm;
+	margin-top: 0cm;
+   
+	visibility: hidden;
+}
+
+.preview table {
+	
+}
+</style>
