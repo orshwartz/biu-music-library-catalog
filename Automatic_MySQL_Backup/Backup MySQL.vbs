@@ -11,8 +11,8 @@ EMAIL_BODY =	"The attached file contains a backup of BIU's music library databas
 				"the DB and no BIU music library tables were created (I haven't tested it in a different situation). It was created" & vbCrLf & _
 				"with MySQL (probably 5.x, but this may have been changed)." & vbCrLf & _
 				vbCrLf & _
-				"It is a script with SQL commands so in order to re-create the data and the tables you should run a command similar " & vbCrLf & _
-				"to (Google ""import MySQL5"" for help, if needed):" & vbCrLf & _
+				"It is a zipped script with SQL commands so in order to re-create the data and the tables you should unzip it and run" & vbCrLf & _
+				"a command similar to (Google ""import MySQL5"" for help, if needed):" & vbCrLf & _
 				"C:\\xampp\\mysql\\bin\\mysql.exe --password="&DBPASSWORD&" --user="&DBUSER&" --host=localhost < " ' Here you should concatenate the backup file name
 
 				
@@ -76,7 +76,7 @@ If bKeepNewBackup Then
 		FROM_EMAIL, _
 		EMAIL_SUBJECT & " - " & currentDateTime, _
 		BACKUP_EMAIL, _
-		EMAIL_BODY & Replace(compressedBackupFilename, "\", "\\")
+		EMAIL_BODY & Replace(backupFilename, "\", "\\")
 End If
 
 
